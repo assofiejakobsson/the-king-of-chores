@@ -1,1 +1,1 @@
-web: gunicorn the-king-of-chores.wsgi
+web: gunicorn TheKingOfChores.wsgi
