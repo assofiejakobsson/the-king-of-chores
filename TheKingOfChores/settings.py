@@ -31,8 +31,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'the-king-of-chores.herokuapp.com', 'localhost'
+    'the-king-of-chores.herokuapp.com', 'localhost', '127.0.0.1',
     '8000-assofiejakobsson-the-kin-ygqo0xcb02.us2.codeanyapp.com',
+    
 ]
 
 
