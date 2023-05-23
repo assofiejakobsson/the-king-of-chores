@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 </head>
-<header>
-    <h1>Todo List</h1>
-</header>
-<body>
+{% block content %}
+  <h2>Todo List</h2>
+  
+  <ul>
     
-</body>
-</html>
+    {% for todo in todos %}
+      <li>
+        {{ todo.title }}
+        <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
+        <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
+        
+    {% empty %}
+      <li>No todos found.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'todo:todo_create' %}">Create New Todo</a>   
+{% endblock %}

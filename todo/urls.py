@@ -2,6 +2,8 @@ from django.urls import path
 from . views import todo_list
 from . import views
 
+app_name = 'todo'
+
 urlpatterns = [
     path('', views.todo_list, name='todo_list'),
     path('create/', views.todo_create, name='todo_create'),

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +6,7 @@
     <title>Document</title>
 </head>
 <header>
-    <h1>Delete Todo</h1>
+    <h1>DeleteTodo</h1>
 </header>
 <body>
     
