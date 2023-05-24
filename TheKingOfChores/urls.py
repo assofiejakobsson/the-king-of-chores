@@ -21,3 +21,4 @@ urlpatterns = [
     path('', include('todo.urls')),
     path('accounts/', include('accountapp.urls')),
 ]
+                              
