@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'todo',
     'accountapp',
+    'game',
 ]
 
 MIDDLEWARE = [
