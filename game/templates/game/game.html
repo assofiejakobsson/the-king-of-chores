@@ -1,0 +1,11 @@
+<h1>hhhhhh</h1>
+{% for task in tasks %}
+    <div>
+        <h4>{{ task.todo }}</h4>
+        <form action="{% url 'complete_task' task.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Complete Task">
+        </form>
+    </div>
+{% endfor %}
+

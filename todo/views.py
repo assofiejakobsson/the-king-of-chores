@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Todo
 from . import views
 from .forms import TodoForm
+from game.views import game_view 
 
 
 # Create your views here.
@@ -12,7 +13,19 @@ def todo_list(request):
     return render(request, 'todo/todo_list.html', {'todos': todos})
 
 
+
 def todo_create(request):
+    if request.method == 'POST':
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('game:game')  
+    else:
+        form = TodoForm()
+    return render(request, 'todo/todo_create.html', {'form': form})
+
+    
+'''def todo_create(request):
     if request.method == 'POST':
         form = TodoForm(request.POST)
         if form.is_valid():
@@ -20,7 +33,7 @@ def todo_create(request):
             return redirect('todo:todo_list')
     else:
         form = TodoForm()
-    return render(request, 'todo/todo_create.html', {'form': form})
+    return render(request, 'todo/todo_create.html', {'form': form})'''
 
 
 def todo_update(request, pk):

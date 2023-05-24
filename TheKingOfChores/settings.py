@@ -47,9 +47,9 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    'todo',
     'accountapp',
     'game',
+    'todo',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +67,7 @@ ROOT_URLCONF = 'TheKingOfChores.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': ['/workspaces/the-king-of-chores/game/templates/game',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
