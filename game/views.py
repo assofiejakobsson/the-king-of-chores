@@ -16,8 +16,10 @@ def game_view(request):
     }
     return render(request, 'game.html', context)
 
+
+@login_required
 def complete_task(request, task_id):
     game_task = Game.objects.get(id=task_id)
     game_task.completed = True
     game_task.save()
-    return redirect('game_view')
+    return redirect('game')

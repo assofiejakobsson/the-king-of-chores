@@ -11,6 +11,8 @@ class Todo(models.Model):
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    objects = models.Manager()
+
     def __str__(self):
         return self.title
 
@@ -20,9 +22,7 @@ class Game(models.Model):
     todo = models.ForeignKey('Todo', on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)     
 
-    objects = models.Manager()
-
     def __str__(self):
         return f"Game: {self.pk}"
-   
 
+    objects = models.Manager()

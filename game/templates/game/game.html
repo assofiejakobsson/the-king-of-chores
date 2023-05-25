@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
+
 {% block content %}
-{% for task in tasks %}
+  {% for task in tasks %}
     <div>
-        <h4>{{ task.todo }}</h4>
-        <form action="{% url 'complete_task' task.id %}" method="post">
-            {% csrf_token %}
-            <input type="submit" value="Complete Task">
-        </form>
+      <h4>{{ task.task.title }}</h4>
+      <p>{{ task.task.description }}</p>
+      <form action="{% url 'game:complete_task' task.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Complete Task">
+      </form>
     </div>
-{% endfor %}
+  {% empty %}
+    <p>No tasks found.</p>
+  {% endfor %}
 {% endblock %}
+
 
