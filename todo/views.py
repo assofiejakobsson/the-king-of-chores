@@ -20,7 +20,11 @@ def todo_create(request):
     if request.method == 'POST':
         form = TodoForm(request.POST)
         if form.is_valid():
-            form.save()
+            todo = form.save()
+            game = Game.objects.create()
+            game.users.add(request.user)
+            game.todo = todo
+            game.save()
             return redirect('game:game')
     else:
         form = TodoForm()

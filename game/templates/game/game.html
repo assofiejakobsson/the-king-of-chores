@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% for todo in todos %}
+  {% for game in family_games %}
     <div>
-      <h4>{{ todo.title }}</h4>
-      <p>{{ todo.description }}</p>
-      
-      <form action="{% url 'game:complete_task' task_id=todo.id %}" method="post">
-
+      <h4>{{ game.todo.title }}</h4>
+      <p>{{ game.todo.description }}</p>
+      {% if game.todo.completed %}
+        <p>Completed by:
+        {% for user in game.users.all %}
+           {{ user.first_name }} {{ user.last_name }}
+        {% endfor %}
+        </p>
+      {% endif %}
+      <h4>Create Task</h4>
+      <form action="{% url 'todo:todo_create' %}" method="post">
         {% csrf_token %}
-        <input type="submit" value="Complete Task">
+        {{ form.as_p }}
+        <button type="submit">Create Task</button>
       </form>
     </div>
   {% empty %}
     <p>No tasks found.</p>
   {% endfor %}
 {% endblock %}
-
