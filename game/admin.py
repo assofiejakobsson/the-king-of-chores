@@ -1,6 +1,6 @@
 from django.contrib import admin
-from todo.models import Todo
+from .models import Todo, Game
 
 
+admin.site.register(Game)
 admin.site.register(Todo)
-

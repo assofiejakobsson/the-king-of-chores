@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Todo
+from game.models import Game
 from . import views
 from .forms import TodoForm
-from game.views import game_view
 from django.contrib.auth.decorators import login_required
 
 
