@@ -29,10 +29,12 @@ def game_create(request):
         form = GameForm(request.POST)
         if form.is_valid():
             game = form.save(commit=False)
+            todo = Todo.objects.create(
+                title=form.cleaned_data['title'],
+                description=form.cleaned_data['description']
+            )
+            game.todo = todo
             game.save()
-            game.users.add(request.user)
-            todo = form.cleaned_data['todo']
-            game.tasks.create(title=todo.title, description=todo.description)
             return redirect('game:game')
     else:
         form = GameForm()
