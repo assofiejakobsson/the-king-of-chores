@@ -14,6 +14,7 @@ class Todo(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False)
+    points = models.IntegerField(default=0)
 
     objects = TodoManager()
 

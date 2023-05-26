@@ -12,6 +12,7 @@ class Todo(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False)
+    points = models.IntegerField(default=0)
 
     objects = TodoManager()
 
@@ -25,7 +26,7 @@ class GameManager(models.Manager):
 
 class Game(models.Model):
     users = models.ManyToManyField(User)
-    todo = models.ForeignKey('Todo', on_delete=models.CASCADE)
+    tasks = models.ManyToManyField(Todo) 
     objects = GameManager()
 
     def __str__(self):

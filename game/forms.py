@@ -1,5 +1,5 @@
 from django import forms
-from .models import Game, Todo
+from .models import Todo, Game
 
 
 class GameForm(forms.ModelForm):

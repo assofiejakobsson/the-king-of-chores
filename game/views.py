@@ -1,13 +1,26 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
-from todo.models import Todo
-from .models import Game
+from django import forms
+from .models import Game, Todo
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
+from todo.forms import TodoForm
 from .forms import GameForm
 
 
-# Create your views here.
+@login_required
+def todo_create(request):
+    if request.method == 'POST':
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            todo = form.save(commit=False)
+            todo.points = form.cleaned_data['points']
+            todo.save()
+            game = Game.objects.create()
+            game.users.add(request.user)
+            game.tasks.add(todo)
+            return redirect('game:game')
+    else:
+        form = TodoForm()
+    return render(request, 'todo/todo_create.html', {'form': form})
 
 
 @login_required
@@ -16,8 +29,10 @@ def game_create(request):
         form = GameForm(request.POST)
         if form.is_valid():
             game = form.save(commit=False)
-            game.todo_id = form.cleaned_data['todo'].id 
             game.save()
+            game.users.add(request.user)
+            todo = form.cleaned_data['todo']
+            game.tasks.create(title=todo.title, description=todo.description)
             return redirect('game:game')
     else:
         form = GameForm()
@@ -40,15 +55,3 @@ def game_view(request):
         'family_games': family_games
     }
     return render(request, 'game/game.html', context)
-
-
-'''@login_required
-def game_view(request):
-    user = request.user
-    game_tasks = user.game_set.all()
-    #game_tasks = Game.objects.filter(user=user)
-    todos = [task.todo for task in game_tasks]
-    context = {
-        'todos': todos
-    }
-    return render(request, 'game.html', context)'''
