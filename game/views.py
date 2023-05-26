@@ -11,6 +11,16 @@ def todo_create(request):
     if request.method == 'POST':
         form = TodoForm(request.POST)
         if form.is_valid():
+            todo = form.save(commit=False)
+            todo.points = form.cleaned_data['points']
+            todo.save()
+            game = Game.objects.create()
+            game.users.add(request.user)
+            game.tasks.add(todo)
+            return redirect('game:game')
+    else:
+        form = TodoForm()
+    return render(request, 'todo/todo_create.html', {'form': form})
 
 
 @login_required
@@ -27,7 +37,6 @@ def game_create(request):
     else:
         form = GameForm()
     return render(request, 'game/game_create.html', {'form': form})
-
 
 
 @login_required

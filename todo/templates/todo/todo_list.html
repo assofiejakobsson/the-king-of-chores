@@ -1,25 +1,18 @@
 {% extends 'base.html' %}
-<h1>todo_list</h1>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Todo List</title>
-</head>
 {% block content %}
   <h2>Todo List</h2>
-  
   <ul>
-
     {% for todo in todos %}
       <li>
-        {{ todo.title }}
+        <input type="checkbox" {% if todo.completed %}checked{% endif %} disabled>
+        {{ todo.title }} ({{ todo.points }} points)
         <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
         <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
-        
+      </li>
     {% empty %}
       <li>No todos found.</li>
     {% endfor %}
   </ul>
-  <a href="{% url 'todo:todo_create' %}">Create New Todo</a>   
-  <a href="{% url 'game:game' %}">Play</a>  
+  <a href="{% url 'todo:todo_create' %}">Create New Todo</a>
+  <a href="{% url 'game:game' %}">Play</a>
 {% endblock %}
