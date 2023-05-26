@@ -9,4 +9,5 @@ urlpatterns = [
     path('game/', game_view, name='game'),
     path('complete/<int:task_id>/', views.complete_task, name='complete_task'),
     path('create/', game_create, name='game_create'),
+    path('create-todo/', views.todo_create, name='todo_create'),
 ]

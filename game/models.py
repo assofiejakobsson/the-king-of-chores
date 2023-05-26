@@ -25,7 +25,6 @@ class GameManager(models.Manager):
 
 class Game(models.Model):
     users = models.ManyToManyField(User)
-    todo = models.ForeignKey('Todo', on_delete=models.CASCADE)
     objects = GameManager()
 
     def __str__(self):
