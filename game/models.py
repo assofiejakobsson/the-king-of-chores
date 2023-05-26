@@ -26,7 +26,7 @@ class GameManager(models.Manager):
 
 class Game(models.Model):
     users = models.ManyToManyField(User)
-    tasks = models.ManyToManyField(Todo) 
+
     objects = GameManager()
 
     def __str__(self):
