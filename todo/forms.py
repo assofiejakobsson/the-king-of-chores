@@ -13,7 +13,7 @@ class TodoCollaboratorForm(forms.ModelForm):
     collaborators = forms.ModelMultipleChoiceField(
         queryset=User.objects.all(),
         widget=forms.CheckboxSelectMultiple,
-        requierd=False
+        required=False
     )
 
     class Meta:

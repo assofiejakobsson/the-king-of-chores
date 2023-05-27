@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Todo
 from game.models import Game
 from . import views
-from .forms import TodoForm
+from .forms import TodoForm, TodoCollaboratorForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -18,17 +18,18 @@ def todo_list(request):
 @login_required
 def todo_create(request):
     if request.method == 'POST':
-        form = TodoForm(request.POST)
-        if form.is_valid():
-            todo = form.save()
+        todo_form = TodoForm(request.POST)
+        collaborator_form = TodoCollaboratorForm(request.POST)
+        if todo_form.is_valid() and collaborator_form.is_valid():
+            todo = todo_form.save()
             game = Game.objects.create()
-            game.users.add(request.user)
-            game.todo = todo
-            game.save()
-            return redirect('game:game')
+            game.todos.add(todo)
+            collaborators = collaborator_form.cleaned_data['collaborators']
+            game.collaborators.set(collaborators)
+            return redirect('todo:todo_list')
     else:
-        form = TodoForm()
-    return render(request, 'todo/todo_create.html', {'form': form})
+        todo_form = TodoForm()
+    return render(request, 'todo/todo_create.html', {'todo_form': todo_form})
 
 
 @login_required
