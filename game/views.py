@@ -38,7 +38,21 @@ def game_create(request):
             return redirect('game:game')
     else:
         form = GameForm()
-    return render(request, 'game/game_create.html', {'form': form})
+    return render(request, 'game/game_create.html', {'form': form}) 
+
+
+""" def game_create(request):
+    if request.method == 'POST':
+        form = GameForm(request.POST)
+        if form.is_valid():
+            game = form.save(commit=False)
+            todo = form.cleaned_data['todo']
+            game.todo = todo
+            game.save()
+            return redirect('game:game')
+    else:
+        form = GameForm()
+    return render(request, 'game/game_create.html', {'form': form})     """
 
 
 @login_required

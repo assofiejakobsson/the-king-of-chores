@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
-        fields = ('title', 'description', 'completed', 'points')
+        fields = ('title', 'description', 'completed')
 
 
 class TodoCollaboratorForm(forms.ModelForm):

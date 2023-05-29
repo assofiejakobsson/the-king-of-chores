@@ -1,6 +1,16 @@
-
-
-{% for game in family_games %}
+{% extends 'base.html' %}
+{% block content %}
+<h2>Games</h2>
+  {% for game in family_games %}
+    <div>
+      <h3>{{ game.todo.title }}</h3>
+      <p>{{ game.todo.description }}</p>
+    </div>
+    {% empty %}
+      <p>No Games Found</p>
+    {% endfor %}  
+{% endblock %}
+<!-- {% for game in family_games %}
   <div>
     <h4>{{ game.tasks.first.title }}</h4>
     <p>{{ game.tasks.first.description }}</p>
@@ -21,3 +31,4 @@
 {% empty %}
   <p>No tasks found.</p>
 {% endfor %}
+ -->
