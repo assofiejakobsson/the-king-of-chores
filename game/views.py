@@ -72,3 +72,24 @@ def game_view(request):
         'games': games
     }
     return render(request, 'game/game.html', context)
+
+
+@login_required
+def game_detail(request, game_id):
+    game = get_object_or_404(Game, id=game_id)
+    if request.method == 'POST':
+        guest_form = GuestForm(request.POST)
+        if guest_form.is_valid():
+            guest = guest_form.save()
+            game.guests.add(guest)
+            game.save()
+            return redirect('game:game_detail', game_id=game_id)
+        
+    else:
+        guest_form = GuestForm()
+    context = {
+        'game': game,
+        'guest_form': guest_form
+    }
+    return render(request, 'game/game_detail.html', context)
+
