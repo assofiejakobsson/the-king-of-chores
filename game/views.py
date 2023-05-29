@@ -12,12 +12,13 @@ def todo_create(request):
         form = TodoForm(request.POST)
         if form.is_valid():
             todo = form.save(commit=False)
-            todo.points = form.cleaned_data['points']
             todo.save()
             game = Game.objects.create()
             game.users.add(request.user)
-            game.tasks.add(todo)
+            game.todo = todo
+            game.save()
             return redirect('game:game')
+
     else:
         form = TodoForm()
     return render(request, 'todo/todo_create.html', {'form': form})
@@ -66,8 +67,8 @@ def complete_task(request, task_id):
 @login_required
 def game_view(request):
     user = request.user
-    family_games = Game.objects.filter(users=user)
+    games = Game.objects.filter(users=user)
     context = {
-        'family_games': family_games
+        'games': games
     }
     return render(request, 'game/game.html', context)
