@@ -19,7 +19,25 @@ class Todo(models.Model):
         return self.title
 
 
-class GameManager(models.Manager):
+class Guest(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name
+
+
+class Game(models.Model):
+    users = models.ManyToManyField(User)
+    guests = models.ManyToManyField(Guest)
+    todo = models.ForeignKey(
+        Todo, on_delete=models.CASCADE
+        )
+
+    def __str__(self):
+        return f"Game: {self.id}"
+
+""" class GameManager(models.Manager):
     pass
 
 
@@ -33,6 +51,6 @@ class Game(models.Model):
 
     def __str__(self):
         return f"Game: {self.pk}"
-
+ """
 
 
