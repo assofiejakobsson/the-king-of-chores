@@ -1,4 +1,4 @@
-from django.urls import path
+""" from django.urls import path
 from .views import complete_task, game_view, game_create
 from game import views
 
@@ -11,3 +11,4 @@ urlpatterns = [
     path('create/', game_create, name='game_create'),
     path('create-todo/', views.todo_create, name='todo_create'),
 ]
+ """

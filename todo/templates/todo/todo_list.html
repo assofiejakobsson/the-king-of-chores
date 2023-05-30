@@ -1,5 +1,40 @@
 {% extends 'base.html' %}
+
 {% block content %}
+  <h2>Todo List</h2>
+  <ul>
+    {% for todo in todos %}
+      <li>
+        {{ todo.title }}
+        <a href="{% url 'todo:todo_update' todo.pk %}">Edit</a>
+        <a href="{% url 'todo:todo_delete' todo.pk %}">Delete</a>
+        {% if todo.completed %}
+          (Completed)
+        {% endif %}
+        <ul>
+          {% for guest in todo.guest_set.all %}
+            <li>
+              {{ guest.email }}
+              {% if not todo.completed and user.email == guest.email %}
+              <form method="POST" action="{% url 'todo_guest_complete' guest.id %}">
+                {% csrf_token %}
+                <input type="checkbox" name="completed" id="completed{{ guest.id }}" onchange="this.form.submit()" />
+                <label for="completed{{ guest.id }}">Mark as Completed</label>
+              </form>
+            {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'todo:todo_create' %}">Create Todo</a>
+
+{% endblock %}
+
+
+<!-- 
+
   <h2>Todo List</h2>
   <ul>
     {% for todo in todos %}
@@ -15,4 +50,5 @@
   </ul>
   <a href="{% url 'todo:todo_create' %}">Create New Todo</a>
   <a href="{% url 'game:game' %}">Play</a>
-{% endblock %}
+
+ -->
