@@ -1,4 +1,4 @@
-from django import forms
+""" from django import forms
 from .models import Todo, Game
 
 
@@ -14,4 +14,4 @@ class GameForm(forms.ModelForm):
     class Meta:
         model = Game
         fields = ['todo']
- 
+  """
