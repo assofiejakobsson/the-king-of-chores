@@ -3,4 +3,4 @@ from .models import Todo, Guest
 
 
 admin.site.register(Todo)
-admin.site.register(guest)
+admin.site.register(Guest)
