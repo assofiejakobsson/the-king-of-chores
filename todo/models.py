@@ -15,6 +15,8 @@ class Todo(models.Model):
 class Guest(models.Model):
     todo = models.ForeignKey(Todo, on_delete=models.CASCADE)
     email = models.EmailField()
+    completed = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.email
