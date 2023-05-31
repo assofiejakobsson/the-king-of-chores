@@ -59,7 +59,7 @@ def todo_create(request):
                 fail_silently=False,
             )
 
-            return redirect('todo:todo_list')
+            return redirect('todo:todo_guest_complete')
     else:
         form = TodoForm()
     return render(request, 'todo/todo_create.html', {'form': form})
@@ -87,6 +87,7 @@ def todo_guest_complete(request, guest_id):
     guest = Guest.objects.get(id=guest_id)
     guest.completed = True
     guest.save()
+    #return redirect('todo:todo_list')
     return render(request, 'todo/todo_guest_complete.html')
 
 
