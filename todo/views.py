@@ -32,7 +32,7 @@ def logout(request):
     auth_logout(request)
     return redirect('login') """
 
-@login_required
+
 def todo_list(request):
     todos = Todo.objects.filter(user=request.user)
     return render(request, 'todo/todo_list.html', {'todos': todos})
@@ -82,7 +82,7 @@ def todo_delete(request, pk):
     todo.delete()
     return redirect('todo:todo_list')
 
-@login_required
+
 def todo_guest_complete(request, guest_id):
     guest = Guest.objects.get(id=guest_id)
     guest.completed = True

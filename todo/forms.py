@@ -2,12 +2,6 @@ from django import forms
 from .models import Todo, Guest
 
 
-""" class TodoForm(forms.ModelForm):
-    class Meta:
-        model = Todo
-        fields = ['title', 'completed'] """
-
-
 class TodoForm(forms.ModelForm):
     email = forms.EmailField()
 
@@ -16,6 +10,11 @@ class TodoForm(forms.ModelForm):
         fields = ['title', 'completed', 'email']
 
 
+
+""" class TodoForm(forms.ModelForm):
+    class Meta:
+        model = Todo
+        fields = ['title', 'completed'] """
 
 
 
