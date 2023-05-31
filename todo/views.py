@@ -89,6 +89,17 @@ def todo_guest_complete(request, guest_id):
        return redirect('todo:todo_list')    
 
 
+def create_todo(request):
+    if request.method == 'POST':
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = TodoForm()
+    return render(request, 'create_todo.html', {'form': form})
+
+
     
 
 
