@@ -59,7 +59,7 @@ def todo_create(request):
                 fail_silently=False,
             )
 
-            return redirect('todo:todo_guest_complete')
+            return redirect('todo:todo_guest_complete', guest_id=guest.id)
     else:
         form = TodoForm()
     return render(request, 'todo/todo_create.html', {'form': form})
