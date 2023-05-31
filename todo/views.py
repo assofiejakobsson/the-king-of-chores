@@ -80,14 +80,15 @@ def todo_update(request, pk):
 def todo_delete(request, pk):
     todo = Todo.objects.get(pk=pk)
     todo.delete()
-    return redirect('todo:todo_list')
-
+    #return redirect('todo:todo_list')
 
 def todo_guest_complete(request, guest_id):
-    guest = Guest.objects.get(id=guest_id)
-    guest.completed = True
-    guest.save()
-    return redirect('todo:todo_list')
+       guest = Guest.objects.get(id=guest_id)
+       guest.completed = True
+       guest.save()
+       return redirect('todo:todo_list')    
+
+
     
 
 
