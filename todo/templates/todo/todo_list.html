@@ -11,13 +11,13 @@
 </script>
 
 <h1>Todo List</h1>
-    <form method="POST" action="/create_todo">
+    <form method="POST" action="/todo_create">
         {% csrf_token %}
         <label for="new_todo">New Todo:</label>
         <input type="text" id="new_todo" name="new_todo">
         <button type="submit">Add</button>
     </form>
-    
+
     <ul>
         {% for todo in todos %}
             <li>
