@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('game/', include('game.urls', namespace='game')),
     path('', include('todo.urls')),
+    path('create_todo/', views.create_todo, name='create_todo'),
     path('accounts/', include('accountapp.urls')),
 ]
