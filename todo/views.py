@@ -60,6 +60,8 @@ def todo_create(request):
             )
 
             return redirect('todo:todo_list')
+
+
     else:
         form = TodoForm()
     return render(request, 'todo/todo_create.html', {'form': form})
@@ -93,11 +95,28 @@ def create_todo(request):
     if request.method == 'POST':
         form = TodoForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('/')
+            todo = form.save(commit=False)
+            todo.user = request.user
+            todo.save()
+
+            # Invite the guest
+            email = form.cleaned_data['email']
+            guest = Guest.objects.create(todo=todo, email=email)
+            
+            # Send an invitation email to the guest
+            send_mail(
+                'Invitation to Todo List',
+                f'You have been invited to collaborate on a todo list. Check it out at: {request.build_absolute_uri("/")}',
+                'sender@example.com',
+                [email],
+                fail_silently=False,
+            )
+
+            return redirect('todo:todo_list')
     else:
         form = TodoForm()
-    return render(request, 'create_todo.html', {'form': form})
+    return render(request, 'todo/todo_create.html', {'form': form})
+
 
 
     
