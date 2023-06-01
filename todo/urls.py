@@ -13,7 +13,7 @@ urlpatterns = [
     path('update/<int:pk>/', views.todo_update, name='todo_update'),
     path('delete/<int:pk>/', views.todo_delete, name='todo_delete'),
     path('guest_complete/<int:guest_id>/', views.todo_guest_complete, name='todo_guest_complete'),
-    path('accounts/', include('accountapp.urls')),
+    
 ]
 
 """ urlpatterns = [
