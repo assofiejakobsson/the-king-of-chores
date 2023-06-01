@@ -6,7 +6,7 @@ from . import views
 app_name = 'todo'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    
     path('', views.todo_list, name='todo_list'),
     path('create/', views.todo_create, name='todo_create'),
     path('create_todo/', views.create_todo, name='create_todo'),
