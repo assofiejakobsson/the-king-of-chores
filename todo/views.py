@@ -4,7 +4,8 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from .forms import TodoForm
-from .models import Todo, Guest
+from .models import Todo
+#from .models import Todo, Guest
 
 
 def todo_list(request):
