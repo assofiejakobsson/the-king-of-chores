@@ -66,13 +66,15 @@ def todo_create(request):
 def todo_update(request, pk):
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
-        form = TodoForm(request.POST, instance=todo)
-        if form.is_valid():
-            form.save()
-            return redirect('todo:todo_list')
+        completed_by = request.POST.get('completed_by', '')
+        todo.completed_by = completed_by
+        todo.completed = not todo.completed
+        todo.save()
+        return redirect('todo:todo_list')
     else:
         form = TodoForm(instance=todo)
     return render(request, 'todo/todo_update.html', {'form': form})
+
 
 @login_required
 def todo_delete(request, pk):
