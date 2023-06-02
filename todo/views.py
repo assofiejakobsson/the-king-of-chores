@@ -9,9 +9,15 @@ from .models import Todo
 
 
 def todo_list(request):
+    todos = Todo.objects.filter(completed=True)
+    return render(request, 'todo/todo_list.html', {'todos': todos})
+
+
+
+""" def todo_list(request):
     user_todos = Todo.objects.filter(user=request.user)
     guest_todos = Guest.objects.filter(email=request.user.email, completed=False)
-    return render(request, 'todo/todo_list.html', {'user_todos': user_todos, 'guest_todos': guest_todos})
+    return render(request, 'todo/todo_list.html', {'user_todos': user_todos, 'guest_todos': guest_todos}) """
 
 
 def todo_create(request):
