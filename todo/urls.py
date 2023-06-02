@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import todo_list, create_todo, todo_delete, todo_update, todo_guest_complete
+from . views import todo_list, create_todo, todo_delete, todo_update, todo_guest_complete
 
 app_name = 'todo'
 
