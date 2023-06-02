@@ -14,6 +14,19 @@ def todo_list(request):
     return render(request, 'todo/todo_list.html', {'user_todos': user_todos, 'guest_todos': guest_todos})
 
 
+def todo_create(request):
+    if request.method == 'POST':
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            todo = form.save(commit=False)
+            todo.save()
+            return redirect('todo:todo_list')
+    else:
+        form = TodoForm()
+    return render(request, 'todo/todo_create.html', {'form': form})
+
+
+
 """ @login_required
 def todo_create(request):
     if request.method == 'POST':

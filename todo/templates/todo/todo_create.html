@@ -2,12 +2,10 @@
 
 {% block content %}
 
-<h2>Create Todo</h2>
-
-<form method="POST" action="{% url 'todo:create_todo' %}">
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Add</button>
-</form>
+    <button type="submit">Add Task</button>
+  </form>
 
 {% endblock %}
