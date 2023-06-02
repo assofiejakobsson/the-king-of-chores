@@ -2,17 +2,22 @@
 
 {% block content %}
 
-<ul>
-  {% for todo in todos %}
-    <li>
-      {{ todo.title }}
-      {% if todo.completed_by %}
-        (Completed by: {{ todo.completed_by }})
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
+<h2>Todo List</h2>
+  <ul>
+    {% for todo in todos %}
+      <li>
+        <input type="checkbox" {% if todo.completed %}checked{% endif %} disabled>
+        {{ todo.title }}
+        <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
+        <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
+      </li>
+    {% empty %}
+      <li>No todos found.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'todo:todo_create' %}">Create New Todo</a>
 
+  
 
 {% endblock %}
 
@@ -21,9 +26,8 @@
 
 
 
-<!-- {% extends 'base.html' %}
+<!-- 
 
-{% block content %}
 
 <h2>Todo List</h2>
 
@@ -58,7 +62,7 @@
     {% endfor %}
 </ul>
 
-{% endblock %}
+
  -->
 
 <!-- 

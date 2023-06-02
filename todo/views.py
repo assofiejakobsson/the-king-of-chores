@@ -9,7 +9,7 @@ from .models import Todo
 
 
 def todo_list(request):
-    todos = Todo.objects.filter(completed=True)
+    todos = Todo.objects.all()
     return render(request, 'todo/todo_list.html', {'todos': todos})
 
 
@@ -24,8 +24,7 @@ def todo_create(request):
     if request.method == 'POST':
         form = TodoForm(request.POST)
         if form.is_valid():
-            todo = form.save(commit=False)
-            todo.save()
+            todo = form.save()
             return redirect('todo:todo_list')
     else:
         form = TodoForm()
@@ -73,14 +72,13 @@ def todo_update(request, pk):
             return redirect('todo:todo_list')
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_update.html', {'form': form}) 
-
+    return render(request, 'todo/todo_update.html', {'form': form})
 
 @login_required
 def todo_delete(request, pk):
     todo = Todo.objects.get(pk=pk)
     todo.delete()
-    #return redirect('todo:todo_list')
+    return redirect('todo:todo_list')
     
 
 def todo_guest_complete(request, guest_id):
