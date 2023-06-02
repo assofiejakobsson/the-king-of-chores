@@ -9,17 +9,23 @@ from .models import Todo
 
 
 def todo_list(request):
-    todos = Todo.objects.filter(completed=True).order_by('completed_by')
-    completed_by_list = todos.values_list('completed_by', flat=True).distinct()
+    completed_todos = Todo.objects.filter(completed=True).order_by('completed_by')
+    completed_by_list = completed_todos.values_list('completed_by', flat=True).distinct()
 
-    completed_todos = []
+    uncompleted_todos = Todo.objects.filter(completed=False)
+
+    completed_todos_grouped = []
     for completed_by in completed_by_list:
-        completed_todos.append({
+        todos = completed_todos.filter(completed_by=completed_by)
+        completed_todos_grouped.append({
             'completed_by': completed_by,
-            'todos': todos.filter(completed_by=completed_by)
+            'todos': todos
         })
 
-    return render(request, 'todo/todo_list.html', {'completed_todos': completed_todos})
+    return render(request, 'todo/todo_list.html', {
+        'completed_todos': completed_todos_grouped,
+        'uncompleted_todos': uncompleted_todos
+    })
 
 
 """ def todo_list(request):

@@ -2,6 +2,19 @@
 
 {% block content %}
 <h2>Todo List</h2>
+<h3>Uncompleted Todos</h3>
+<ul>
+  {% for todo in uncompleted_todos %}
+    <li>
+      {{ todo.title }}
+      <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
+      <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
+    </li>
+  {% empty %}
+    <li>No uncompleted todos found.</li>
+  {% endfor %}
+</ul>
+
 {% for completed in completed_todos %}
   <h3>Completed by: {{ completed.completed_by }}</h3>
   <ul>
@@ -18,7 +31,7 @@
         </form>
       </li>
     {% empty %}
-      <li>No todos found.</li>
+      <li>No completed todos found.</li>
     {% endfor %}
   </ul>
 {% empty %}
