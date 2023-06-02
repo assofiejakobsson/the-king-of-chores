@@ -8,9 +8,10 @@ from .models import Todo, Guest
 
 
 def todo_list(request):
-    todos = Todo.objects.filter(user=request.user)
-    return render(request, 'todo/todo_list.html', {'todos': todos})
-
+    user_todos = Todo.objects.filter(user=request.user)
+    guest_todos = Guest.objects.filter(email=request.user.email, completed=False)
+    return render(request, 'todo/todo_list.html', {'user_todos': user_todos, 'guest_todos': guest_todos})
+""" 
 
 @login_required
 def todo_create(request):
@@ -52,7 +53,7 @@ def todo_update(request, pk):
             return redirect('todo:todo_list')
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_update.html', {'form': form})
+    return render(request, 'todo/todo_update.html', {'form': form}) """
 
 
 @login_required
@@ -63,10 +64,10 @@ def todo_delete(request, pk):
     
 
 def todo_guest_complete(request, guest_id):
-       guest = Guest.objects.get(id=guest_id)
-       guest.completed = True
-       guest.save()
-       return redirect('todo:todo_list')    
+    guest_todo = Guest.objects.get(id=todo_id)
+    guest_todo.completed = True
+    guest_todo.save()
+    return redirect('todo:todo_list')   
 
 
 def create_todo(request):
@@ -91,6 +92,7 @@ def create_todo(request):
             )
 
             return redirect('todo:todo_list')
+
     else:
         form = TodoForm()
     return render(request, 'todo/todo_create.html', {'form': form})
