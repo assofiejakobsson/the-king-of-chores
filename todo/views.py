@@ -9,8 +9,22 @@ from .models import Todo
 
 
 def todo_list(request):
+    todos = Todo.objects.filter(completed=True).order_by('completed_by')
+    completed_by_list = todos.values_list('completed_by', flat=True).distinct()
+
+    completed_todos = []
+    for completed_by in completed_by_list:
+        completed_todos.append({
+            'completed_by': completed_by,
+            'todos': todos.filter(completed_by=completed_by)
+        })
+
+    return render(request, 'todo/todo_list.html', {'completed_todos': completed_todos})
+
+
+""" def todo_list(request):
     todos = Todo.objects.all()
-    return render(request, 'todo/todo_list.html', {'todos': todos})
+    return render(request, 'todo/todo_list.html', {'todos': todos}) """
 
 
 
