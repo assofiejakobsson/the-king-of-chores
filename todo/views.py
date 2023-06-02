@@ -11,9 +11,9 @@ def todo_list(request):
     user_todos = Todo.objects.filter(user=request.user)
     guest_todos = Guest.objects.filter(email=request.user.email, completed=False)
     return render(request, 'todo/todo_list.html', {'user_todos': user_todos, 'guest_todos': guest_todos})
-""" 
 
-@login_required
+
+""" @login_required
 def todo_create(request):
     if request.method == 'POST':
         form = TodoForm(request.POST)
@@ -40,7 +40,7 @@ def todo_create(request):
 
     else:
         form = TodoForm()
-    return render(request, 'todo/todo_create.html', {'form': form})
+    return render(request, 'todo/todo_create.html', {'form': form}) """
 
 
 @login_required
@@ -53,7 +53,7 @@ def todo_update(request, pk):
             return redirect('todo:todo_list')
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_update.html', {'form': form}) """
+    return render(request, 'todo/todo_update.html', {'form': form}) 
 
 
 @login_required
