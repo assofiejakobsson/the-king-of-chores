@@ -1,11 +1,12 @@
 from django.urls import path
-from .views import todo_list, todo_create, todo_delete, todo_update, todo_guest_complete
+from .views import todo_list, todo_create, todo_delete, todo_update, update_completed_by, todo_guest_complete
 
 app_name = 'todo'
 
 urlpatterns = [
     path('', todo_list, name='todo_list'),
     path('create/', todo_create, name='todo_create'),
+    path('update_completed_by/<int:pk>/', update_completed_by, name='update_completed_by'),
     path('update/<int:pk>/', todo_update, name='todo_update'),
     path('delete/<int:pk>/', todo_delete, name='todo_delete'),
 ]

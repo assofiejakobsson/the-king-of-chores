@@ -2,10 +2,27 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
+#from django.core.mail import send_mail
 from .forms import TodoForm
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 from .models import Todo
 #from .models import Todo, Guest
+
+
+@csrf_exempt
+def update_completed_by(request, todo_id):
+    if request.method == 'POST':
+        completed_by = request.POST.get('completed_by', '')
+        try:
+            todo = Todo.objects.get(id=todo_id)
+            todo.completed_by = completed_by
+            todo.save()
+            return JsonResponse({'success': True})
+        except Todo.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Todo not found'})
+    return JsonResponse({'success': False, 'error': 'Invalid request'})
+
 
 
 def todo_list(request):
@@ -42,13 +59,10 @@ def todo_list(request):
 
 def todo_create(request):
     if request.method == 'POST':
-        form = TodoForm(request.POST)
-        if form.is_valid():
-            todo = form.save()
-            return redirect('todo:todo_list')
-    else:
-        form = TodoForm()
-    return render(request, 'todo/todo_create.html', {'form': form})
+        title = request.POST.get('title', '')
+        todo = Todo.objects.create(title=title)
+        return redirect('todo:todo_list')
+    return render(request, 'todo/todo_create.html')
 
 
 
@@ -101,7 +115,8 @@ def todo_delete(request, pk):
     todo = Todo.objects.get(pk=pk)
     todo.delete()
     return redirect('todo:todo_list')
-    
+
+
 
 def todo_guest_complete(request, guest_id):
     guest_todo = Guest.objects.get(id=todo_id)
@@ -110,7 +125,7 @@ def todo_guest_complete(request, guest_id):
     return redirect('todo:todo_list')   
 
 
-def create_todo(request):
+""" def create_todo(request):
     if request.method == 'POST':
         form = TodoForm(request.POST)
         if form.is_valid():
@@ -138,7 +153,7 @@ def create_todo(request):
     return render(request, 'todo/todo_create.html', {'form': form})
 
 
-
+ """
     
 
 

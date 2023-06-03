@@ -2,46 +2,71 @@
 
 {% block content %}
 <h2>Todo List</h2>
-<h3>Uncompleted Todos</h3>
-<ul>
+<form id="addTaskForm" method="POST" action="{% url 'todo:todo_create' %}">
+  {% csrf_token %}
+  <input type="text" name="title" id="taskTitleInput" placeholder="Enter task title" required>
+  <button type="submit">Add Task</button>
+</form>
+
+<ul id="taskList">
   {% for todo in uncompleted_todos %}
-    <li>
+  <li>
+    <form method="post" action="{% url 'todo:todo_update' pk=todo.pk %}">
+      {% csrf_token %}
+      <input type="hidden" name="completed_by" value="{{ todo.completed_by }}">
+      <input type="checkbox" onchange="this.form.submit()">
       {{ todo.title }}
       <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
       <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
-    </li>
-  {% empty %}
-    <li>No uncompleted todos found.</li>
+    </form>
+  </li>
+  {% endfor %}
+
+  {% for completed_group in completed_todos %}
+  <li>
+    <span class="completed-task-group">{{ completed_group.completed_by }}</span>
+    <ul>
+      {% for todo in completed_group.todos %}
+      <li><span class="completed-task">{{ todo.title }}</span></li>
+      {% endfor %}
+    </ul>
+  </li>
   {% endfor %}
 </ul>
 
-{% for completed in completed_todos %}
-  <h3>Completed by: {{ completed.completed_by }}</h3>
-  <ul>
-    {% for todo in completed.todos %}
-      <li>
-        <form method="post" action="{% url 'todo:todo_update' pk=todo.pk %}">
-          {% csrf_token %}
-          <input type="hidden" name="completed_by" value="{{ todo.completed_by }}">
-          <input type="checkbox" {% if todo.completed %}checked{% endif %} 
-                 onchange="this.form.submit()">
-          {{ todo.title }}
-          <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
-          <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
-        </form>
-      </li>
-    {% empty %}
-      <li>No completed todos found.</li>
-    {% endfor %}
-  </ul>
-{% empty %}
-  <p>No completed todos found.</p>
-{% endfor %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function handleTodoCheckboxChange(checkbox) {
+  var todoId = $(checkbox).data('todo-id');
+  var todoTitle = $(checkbox).data('task-title');
 
-<a href="{% url 'todo:todo_create' %}">Create New Todo</a>
+  if (checkbox.checked) {
+    var enteredName = prompt('Enter the name of the person who completed the task:');
+    if (enteredName !== null) {
+      completeTask(todoId, enteredName, todoTitle);
+    } else {
+      checkbox.checked = false;
+    }
+  }
+}
 
-  
+function completeTask(todoId, completedBy, todoTitle) {
+  var csrfToken = $('[name=csrfmiddlewaretoken]').val();
 
+  $.ajax({
+    url: '/update_completed_by/' + todoId + '/',
+    type: 'POST',
+    data: { completed_by: completedBy },
+    headers: { 'X-CSRFToken': csrfToken },
+    success: function(response) {
+      $('#taskList').append('<li><span class="completed-task">' + todoTitle + ' (Completed by: ' + completedBy + ')</span></li>');
+    },
+    error: function(xhr, textStatus, errorThrown) {
+      console.error('Error:', errorThrown);
+    }
+  });
+}
+</script>
 {% endblock %}
 
 
