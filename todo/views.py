@@ -5,8 +5,10 @@ from django.contrib.auth.decorators import login_required
 #from django.core.mail import send_mail
 from .forms import TodoForm
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 from django.http import JsonResponse
 from .models import Todo
+from django.db.models import F
 #from .models import Todo, Guest
 
 
@@ -24,25 +26,87 @@ def update_completed_by(request, todo_id):
     return JsonResponse({'success': False, 'error': 'Invalid request'})
 
 
-
 def todo_list(request):
-    completed_todos = Todo.objects.filter(completed=True).order_by('completed_by')
+    completed_todos = Todo.objects.filter(completed=True).order_by('completed_by', F('title').asc(nulls_last=True))
     completed_by_list = completed_todos.values_list('completed_by', flat=True).distinct()
 
     uncompleted_todos = Todo.objects.filter(completed=False)
 
-    completed_todos_grouped = []
+    completed_todos_grouped = {}
     for completed_by in completed_by_list:
         todos = completed_todos.filter(completed_by=completed_by)
-        completed_todos_grouped.append({
-            'completed_by': completed_by,
-            'todos': todos
-        })
+        completed_todos_grouped[completed_by] = todos
 
     return render(request, 'todo/todo_list.html', {
         'completed_todos': completed_todos_grouped,
         'uncompleted_todos': uncompleted_todos
     })
+
+@login_required
+@csrf_protect
+def todo_create(request):
+    if request.method == 'POST':
+        title = request.POST.get('title', '')
+        todo = Todo.objects.create(title=title)
+        return redirect('todo:todo_list')
+    return render(request, 'todo/todo_create.html')
+
+
+@login_required
+@csrf_protect
+def todo_update(request, pk):
+    todo = Todo.objects.get(pk=pk)
+    if request.method == 'POST':
+        completed_by = request.POST.get('completed_by', '')
+        todo.completed_by = completed_by
+        todo.completed = True
+        todo.save()
+        return redirect('todo:todo_list')
+    else:
+        form = TodoForm(instance=todo)
+    return render(request, 'todo/todo_update.html', {'form': form})
+
+
+@login_required
+def todo_delete(request, pk):
+    todo = Todo.objects.get(pk=pk)
+    todo.delete()
+    return redirect('todo:todo_list')
+
+
+
+def todo_guest_complete(request, guest_id):
+    guest_todo = Guest.objects.get(id=todo_id)
+    guest_todo.completed = True
+    guest_todo.save()
+    return redirect('todo:todo_list')   
+
+
+
+#Crud funktion for the complted task
+
+
+@login_required
+def todo_completed_update(request, pk):
+    todo = Todo.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = TodoForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            return redirect('todo:todo_list')
+    else:
+        form = TodoForm(instance=todo)
+    return render(request, 'todo/todo_completed_update.html', {'form': form, 'completed_todo': todo})
+
+
+
+@login_required
+def todo_completed_delete(request, pk):
+    todo = Todo.objects.get(pk=pk)
+    if request.method == 'POST':
+        todo.delete()
+        return redirect('todo:todo_list')
+    return render(request, 'todo/todo_completed_delete.html', {'todo': todo})
 
 
 """ def todo_list(request):
@@ -56,13 +120,6 @@ def todo_list(request):
     guest_todos = Guest.objects.filter(email=request.user.email, completed=False)
     return render(request, 'todo/todo_list.html', {'user_todos': user_todos, 'guest_todos': guest_todos}) """
 
-
-def todo_create(request):
-    if request.method == 'POST':
-        title = request.POST.get('title', '')
-        todo = Todo.objects.create(title=title)
-        return redirect('todo:todo_list')
-    return render(request, 'todo/todo_create.html')
 
 
 
@@ -95,34 +152,6 @@ def todo_create(request):
         form = TodoForm()
     return render(request, 'todo/todo_create.html', {'form': form}) """
 
-
-@login_required
-def todo_update(request, pk):
-    todo = Todo.objects.get(pk=pk)
-    if request.method == 'POST':
-        completed_by = request.POST.get('completed_by', '')
-        todo.completed_by = completed_by
-        todo.completed = not todo.completed
-        todo.save()
-        return redirect('todo:todo_list')
-    else:
-        form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_update.html', {'form': form})
-
-
-@login_required
-def todo_delete(request, pk):
-    todo = Todo.objects.get(pk=pk)
-    todo.delete()
-    return redirect('todo:todo_list')
-
-
-
-def todo_guest_complete(request, guest_id):
-    guest_todo = Guest.objects.get(id=todo_id)
-    guest_todo.completed = True
-    guest_todo.save()
-    return redirect('todo:todo_list')   
 
 
 """ def create_todo(request):

@@ -1,75 +1,116 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Todo List</h2>
-<form id="addTaskForm" method="POST" action="{% url 'todo:todo_create' %}">
-  {% csrf_token %}
-  <input type="text" name="title" id="taskTitleInput" placeholder="Enter task title" required>
-  <button type="submit">Add Task</button>
-</form>
+  <h2>Todo List</h2>
+  <form id="addTaskForm" method="POST" action="{% url 'todo:todo_create' %}">
+    {% csrf_token %}
+    <input type="text" name="title" id="taskTitleInput" placeholder="Enter task title" required>
+    <button type="submit">Add Task</button>
+  </form>
 
-<ul id="taskList">
-  {% for todo in uncompleted_todos %}
-  <li>
-    <form method="post" action="{% url 'todo:todo_update' pk=todo.pk %}">
-      {% csrf_token %}
-      <input type="hidden" name="completed_by" value="{{ todo.completed_by }}">
-      <input type="checkbox" onchange="this.form.submit()">
-      {{ todo.title }}
-      <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
-      <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
-    </form>
-  </li>
-  {% endfor %}
+  <ul id="taskList">
+    {% for todo in uncompleted_todos %}
+    <li>
+      <form method="post" action="{% url 'todo:todo_update' pk=todo.pk %}">
+        {% csrf_token %}
+        <input type="hidden" name="completed_by" value="{{ todo.completed_by }}">
+        <input type="checkbox" class="task-checkbox" data-todo-id="{{ todo.pk }}" data-task-title="{{ todo.title }}">
+        {{ todo.title }}
+        {% if todo.completed_by %}
+        <span class="completed-by">Completed by: {{ todo.completed_by }}</span>
+        {% endif %}
+        <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
+        <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
+      </form>
+    </li>
+    {% endfor %}
 
-  {% for completed_group in completed_todos %}
-  <li>
-    <span class="completed-task-group">{{ completed_group.completed_by }}</span>
-    <ul>
-      {% for todo in completed_group.todos %}
-      <li><span class="completed-task">{{ todo.title }}</span></li>
-      {% endfor %}
-    </ul>
-  </li>
-  {% endfor %}
-</ul>
+    {% for completed_by, todos in completed_todos.items %}
+    <li>
+      <span class="completed-task-group">Completed by: {{ completed_by }}</span>
+      <ul>
+        {% for todo in todos %}
+        <li>
+          <span class="completed-task">{{ todo.title }}</span>
+          <a href="{% url 'todo:todo_completed_update' pk=todo.pk %}">Edit</a>
+          <a href="{% url 'todo:todo_completed_delete' pk=todo.pk %}">Delete</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-function handleTodoCheckboxChange(checkbox) {
-  var todoId = $(checkbox).data('todo-id');
-  var todoTitle = $(checkbox).data('task-title');
+  <!-- Modal for entering the name -->
+  <div id="nameModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Enter the name of the person who completed the task:</p>
+      <input type="text" id="nameInput">
+      <button id="nameSubmit">Submit</button>
+    </div>
+  </div>
 
-  if (checkbox.checked) {
-    var enteredName = prompt('Enter the name of the person who completed the task:');
-    if (enteredName !== null) {
-      completeTask(todoId, enteredName, todoTitle);
-    } else {
-      checkbox.checked = false;
-    }
-  }
-}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var todoId;
+      var todoTitle;
 
-function completeTask(todoId, completedBy, todoTitle) {
-  var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+      $('.task-checkbox').on('change', function() {
+        if (this.checked) {
+          todoId = $(this).data('todo-id');
+          todoTitle = $(this).data('task-title');
+          $('#nameModal').show();
+        }
+      });
 
-  $.ajax({
-    url: '/update_completed_by/' + todoId + '/',
-    type: 'POST',
-    data: { completed_by: completedBy },
-    headers: { 'X-CSRFToken': csrfToken },
-    success: function(response) {
-      $('#taskList').append('<li><span class="completed-task">' + todoTitle + ' (Completed by: ' + completedBy + ')</span></li>');
-    },
-    error: function(xhr, textStatus, errorThrown) {
-      console.error('Error:', errorThrown);
-    }
-  });
-}
-</script>
+      $('#nameSubmit').on('click', function() {
+        var enteredName = $('#nameInput').val().trim();
+        if (enteredName !== '') {
+          completeTask(todoId, enteredName, todoTitle);
+          $('#nameModal').hide();
+          $('#nameInput').val('');
+        } else {
+          alert('Please enter a name for completion.');
+        }
+      });
+
+      function completeTask(todoId, completedBy, todoTitle) {
+        var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+
+        $.ajax({
+          url: '/update_completed_by/' + todoId + '/',
+          type: 'POST',
+          data: { completed_by: completedBy },
+          headers: { 'X-CSRFToken': csrfToken },
+          success: function(response) {
+            var completedGroup = $('#taskList').find('.completed-task-group:contains("Completed by: ' + completedBy + '")');
+            if (completedGroup.length > 0) {
+              completedGroup.next('ul').append('<li><span class="completed-task">' + todoTitle + '</span><a href="/update_completed_by/' + todoId + '/">Edit</a><a href="/delete_completed_by/' + todoId + '/">Delete</a></li>');
+            } else {
+              $('#taskList').append('<li><span class="completed-task-group">Completed by: ' + completedBy + '</span><ul><li><span class="completed-task">' + todoTitle + '</span><a href="/update_completed_by/' + todoId + '/">Edit</a><a href="/delete_completed_by/' + todoId + '/">Delete</a></li></ul></li>');
+            }
+          },
+          error: function(xhr, textStatus, errorThrown) {
+            console.error('Error:', errorThrown);
+          }
+        });
+      }
+
+      // Close the modal when the close button is clicked
+      $('.close').on('click', function() {
+        $('#nameModal').hide();
+        $('#nameInput').val('');
+      });
+    });
+  </script>
 {% endblock %}
 
 
+
+
+/* 
 <!-- 
 <h2>Todo List</h2>
 <ul>
@@ -94,10 +135,10 @@ function completeTask(todoId, completedBy, todoTitle) {
 </ul>
 <a href="{% url 'todo:todo_create' %}">Create New Todo</a>
  -->
-  
+   */
 
 
-<!-- 
+/* <!-- 
 
 
 <h2>Todo List</h2>
@@ -134,24 +175,5 @@ function completeTask(todoId, completedBy, todoTitle) {
 </ul>
 
 
- -->
+ --> */
 
-<!-- 
-
-  <h2>Todo List</h2>
-  <ul>
-    {% for todo in todos %}
-      <li>
-        <input type="checkbox" {% if todo.completed %}checked{% endif %} disabled>
-        {{ todo.title }} ({{ todo.points }} points)
-        <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
-        <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
-      </li>
-    {% empty %}
-      <li>No todos found.</li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'todo:todo_create' %}">Create New Todo</a>
-  <a href="{% url 'game:game' %}">Play</a>
-
- -->
