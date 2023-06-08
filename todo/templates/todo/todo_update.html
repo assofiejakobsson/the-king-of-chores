@@ -1,18 +1,16 @@
 {% extends 'base.html' %}
-<h1>todo_update</h1>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Update Todo</title>
-</head>
+
 {% block content %}
-<body>
-    
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update</button>
-      </form>
-</body>
+  <h2>Edit Task</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="checkbox" name="completed" {% if todo.completed %}checked{% endif %}>
+    <label for="id_completed">Completed</label>
+    <br>
+    {% if todo.completed %}
+    <input type="text" name="completed_by" value="{{ todo.completed_by }}" placeholder="Completed by">
+    {% endif %}
+    <button type="submit">Update</button>
+  </form>
 {% endblock %}
-</html>

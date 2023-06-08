@@ -4,7 +4,7 @@ from .models import Todo
 
 
 class TodoForm(forms.ModelForm):
-    #completed_by = forms.CharField(max_length=100, required=False)
+    completed_by = forms.CharField(max_length=100, required=False)
 
     class Meta:
         model = Todo

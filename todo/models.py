@@ -7,7 +7,8 @@ class Todo(models.Model):
     completed = models.BooleanField(default=False)
     completed_by = models.CharField(max_length=100, null=True, blank=True)
 
-
+def __str__(self):
+        return self.title
 
 
 """ class Todo(models.Model):

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
@@ -13,6 +13,7 @@ from django.db.models import F
 
 
 @csrf_exempt
+@login_required
 def update_completed_by(request, todo_id):
     if request.method == 'POST':
         completed_by = request.POST.get('completed_by', '')
@@ -26,6 +27,7 @@ def update_completed_by(request, todo_id):
     return JsonResponse({'success': False, 'error': 'Invalid request'})
 
 
+@login_required
 def todo_list(request):
     completed_todos = Todo.objects.filter(completed=True).order_by('completed_by', F('title').asc(nulls_last=True))
     completed_by_list = completed_todos.values_list('completed_by', flat=True).distinct()
@@ -42,8 +44,9 @@ def todo_list(request):
         'uncompleted_todos': uncompleted_todos
     })
 
-@login_required
+
 @csrf_protect
+@login_required
 def todo_create(request):
     if request.method == 'POST':
         title = request.POST.get('title', '')
@@ -53,7 +56,20 @@ def todo_create(request):
 
 
 @login_required
+def todo_complete(request, pk):
+    todo = get_object_or_404(Todo, pk=pk)
+    if request.method == 'POST':
+        completed_by = request.POST.get('completed_by', '')
+        todo.completed_by = completed_by
+        todo.completed = True
+        todo.save()
+        return redirect('todo:todo_list')
+    return render(request, 'todo/todo_complete.html', {'todo': todo})
+
+
+
 @csrf_protect
+@login_required
 def todo_update(request, pk):
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
@@ -73,6 +89,11 @@ def todo_delete(request, pk):
     todo.delete()
     return redirect('todo:todo_list')
 
+
+@login_required
+def todo_view(request, pk):
+    todo = get_object_or_404(Todo, pk=pk)
+    return render(request, 'todo/todo_view.html', {'todo': todo})
 
 
 def todo_guest_complete(request, guest_id):

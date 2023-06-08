@@ -2,12 +2,12 @@
 
 {% block content %}
   <h1>Update Completed Task</h1>
-  <form method="post">
+  <form method="post" action="{% url 'todo:todo_completed_update' pk=completed_todo.pk %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Update</button>
-    <a href="{% url 'todo:todo_list' %}">Cancel</a>
   </form>
+
   <form method="post" action="{% url 'todo:todo_completed_delete' pk=completed_todo.pk %}">
     {% csrf_token %}
     <button type="submit">Delete</button>
