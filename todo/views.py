@@ -26,7 +26,6 @@ def update_completed_by(request, todo_id):
             return JsonResponse({'success': False, 'error': 'Todo not found'})
     return JsonResponse({'success': False, 'error': 'Invalid request'})
 
-
 @login_required
 def todo_list(request):
     completed_todos = Todo.objects.filter(user=request.user, completed=True).order_by('completed_by', 'title')
@@ -39,11 +38,11 @@ def todo_list(request):
         todos = completed_todos.filter(completed_by=completed_by)
         completed_todos_grouped[completed_by] = todos
 
-    return render(request, 'todo/todo_list.html', {
+    context = {
         'completed_todos': completed_todos_grouped,
         'uncompleted_todos': uncompleted_todos
-    })
-
+    }
+    return render(request, 'todo/todo_list.html', context)
 
 @csrf_protect
 @login_required

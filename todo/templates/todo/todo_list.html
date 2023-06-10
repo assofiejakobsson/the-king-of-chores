@@ -6,16 +6,19 @@
     {% csrf_token %}
     <input type="text" name="title" id="taskTitleInput" placeholder="Enter task title" required>
     <button type="submit">Add Task</button>
+    <input type="text" name="description" id="descriptionInput" placeholder="Enter task description">
+    <button type="submit">Add Description</button>
   </form>
 
   <ul id="taskList">
     {% for todo in uncompleted_todos %}
     <li>
       {{ todo.title }}
+      
       <a href="{% url 'todo:todo_view' pk=todo.pk %}">View</a>
-      <button type="button" class="complete-btn" data-toggle="modal" data-target="#completeModal" data-task-id="{{ todo.pk }}">Complete</button>
       <a href="{% url 'todo:todo_update' pk=todo.pk %}">Edit</a>
       <a href="{% url 'todo:todo_delete' pk=todo.pk %}">Delete</a>
+      <button type="button" class="complete-btn" data-toggle="modal" data-target="#completeModal" data-task-id="{{ todo.pk }}">Complete</button>
     </li>
     {% endfor %}
   </ul>

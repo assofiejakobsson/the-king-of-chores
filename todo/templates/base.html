@@ -7,7 +7,7 @@
 <body>todo/templates/todo/todo_list.html
   <nav>
     {% if user.is_authenticated %}
-      <h1>Welcome, {{ user.username }}!</h1>
+      <p>Welcome, {{ request.user }}!</p>
        <a href="{% url 'accountapp:logout' %}">Logout</a>   
     {% else %}
       <a href="{% url 'accountapp:login' %}">Login</a>

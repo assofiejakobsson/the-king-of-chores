@@ -3,6 +3,7 @@
 {% block content %}
   <h2>Task Details</h2>
   <p><strong>Title:</strong> {{ todo.title }}</p>
+  <p><strong>Descrption:</strong> {{ todo.description }}</p>
   <p><strong>Completed:</strong> {% if todo.completed %}Yes{% else %}No{% endif %}</p>
   {% if todo.completed_by %}
     <p><strong>Completed By:</strong> {{ todo.completed_by }}</p>
