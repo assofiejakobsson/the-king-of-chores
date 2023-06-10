@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Todo(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)  
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     title = models.CharField(max_length=200)
     completed = models.BooleanField(default=False)
     completed_by = models.CharField(max_length=100, blank=True, null=True)

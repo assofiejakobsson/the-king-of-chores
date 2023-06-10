@@ -31,10 +31,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu99.gitpod.io'
-    'the-king-of-chores.herokuapp.com', 'localhost', '127.0.0.1',
+    'the-king-of-chores.herokuapp.com',
+    '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu99.gitpod.io',
+    'localhost',
+    '127.0.0.1',
     '8000-assofiejakobsson-the-kin-ygqo0xcb02.us2.codeanyapp.com',
-    '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu98.gitpod.io' 
+    '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu98.gitpod.io'
 ]
 
 
