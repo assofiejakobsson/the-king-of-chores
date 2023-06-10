@@ -93,7 +93,8 @@ def todo_delete(request, pk):
 @login_required
 def todo_view(request, pk):
     todo = get_object_or_404(Todo, pk=pk)
-    return render(request, 'todo/todo_view.html', {'todo': todo})
+    logged_in_user = request.user
+    return render(request, 'todo/todo_view.html', {'todo': todo, 'user': logged_in_user})
 
 
 def todo_guest_complete(request, guest_id):
