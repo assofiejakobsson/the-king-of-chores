@@ -29,10 +29,10 @@ def update_completed_by(request, todo_id):
 
 @login_required
 def todo_list(request):
-    completed_todos = Todo.objects.filter(completed=True).order_by('completed_by', F('title').asc(nulls_last=True))
+    completed_todos = Todo.objects.filter(user=request.user, completed=True).order_by('completed_by', 'title')
     completed_by_list = completed_todos.values_list('completed_by', flat=True).distinct()
 
-    uncompleted_todos = Todo.objects.filter(completed=False)
+    uncompleted_todos = Todo.objects.filter(user=request.user, completed=False)
 
     completed_todos_grouped = {}
     for completed_by in completed_by_list:
@@ -50,7 +50,7 @@ def todo_list(request):
 def todo_create(request):
     if request.method == 'POST':
         title = request.POST.get('title', '')
-        todo = Todo.objects.create(title=title)
+        todo = Todo.objects.create(title=title, user=request.user)
         return redirect('todo:todo_list')
     return render(request, 'todo/todo_create.html')
 
