@@ -85,15 +85,16 @@ def todo_update(request, pk):
             return redirect('todo:todo_list')
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_update.html', {'form': form, 'todo': todo})
+    return render(request, 'todo/todo_update.html', {'form': form, 'completed_todo': todo})
 
     
 @login_required
 def todo_delete(request, pk):
     todo = Todo.objects.get(pk=pk)
-    todo.delete()
-    return redirect('todo:todo_list')
-
+    if request.method == 'POST':
+        todo.delete()
+        return redirect('todo:todo_list')
+    return render(request, 'todo/todo_delete.html', {'todo': todo})
 
 @login_required
 def todo_view(request, pk):
@@ -106,7 +107,7 @@ def todo_guest_complete(request, guest_id):
     guest_todo = Guest.objects.get(id=todo_id)
     guest_todo.completed = True
     guest_todo.save()
-    return redirect('todo:todo_list')   
+    return redirect('todo:todo_list')  
 
 
 

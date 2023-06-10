@@ -6,10 +6,12 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Update</button>
+    <button type="button" id="cancelButton">Cancel</button>
   </form>
 
-  <form method="post" action="{% url 'todo:todo_completed_delete' pk=completed_todo.pk %}">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-  </form>
+  <script>
+    document.getElementById("cancelButton").addEventListener("click", function() {
+      window.location.href = "{% url 'todo:todo_list' %}";
+    });
+  </script>
 {% endblock %}
