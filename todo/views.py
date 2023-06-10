@@ -49,11 +49,15 @@ def todo_list(request):
 @login_required
 def todo_create(request):
     if request.method == 'POST':
-        title = request.POST.get('title', '')
-        todo = Todo.objects.create(title=title, user=request.user)
-        return redirect('todo:todo_list')
-    return render(request, 'todo/todo_create.html')
-
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            todo = form.save(commit=False)
+            todo.user = request.user
+            todo.save()
+            return redirect('todo:todo_list')
+    else:
+        form = TodoForm()
+    return render(request, 'todo/todo_create.html', {'form': form})
 
 @login_required
 def todo_complete(request, pk):
@@ -73,16 +77,18 @@ def todo_complete(request, pk):
 def todo_update(request, pk):
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
-        completed_by = request.POST.get('completed_by', '')
-        todo.completed_by = completed_by
-        todo.completed = True
-        todo.save()
-        return redirect('todo:todo_list')
+        form = TodoForm(request.POST, instance=todo)
+        if form.is_valid():
+            todo = form.save(commit=False)
+            todo.completed_by = request.POST.get('completed_by', '')
+            todo.completed = True
+            todo.save()
+            return redirect('todo:todo_list')
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_update.html', {'form': form})
+    return render(request, 'todo/todo_update.html', {'form': form, 'todo': todo})
 
-
+    
 @login_required
 def todo_delete(request, pk):
     todo = Todo.objects.get(pk=pk)

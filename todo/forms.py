@@ -8,7 +8,7 @@ class TodoForm(forms.ModelForm):
 
     class Meta:
         model = Todo
-        fields = ['title', 'completed', 'completed_by']
+        fields = ['title', 'completed', 'completed_by', 'description']
 
 
 """ class TodoForm(forms.ModelForm):

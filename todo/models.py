@@ -6,6 +6,7 @@ from django.utils import timezone
 class Todo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     title = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)  # New field for description
     completed = models.BooleanField(default=False)
     completed_by = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
