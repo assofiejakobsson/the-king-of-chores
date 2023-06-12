@@ -8,6 +8,6 @@
   {% if todo.completed_by %}
     <p><strong>Completed By:</strong> {{ todo.completed_by }}</p>
   {% endif %}
-  <a href="{% url 'todo:todo_update' pk=todo.pk %}"><button>Edit</button></a>
+  <a href="{% url 'todo:todo_delete' pk=todo.pk %}"><button>Delete</button></a>
   <a href="{% url 'todo:todo_list' %}"><button>Back</button></a>
 {% endblock %}
