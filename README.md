@@ -13,6 +13,8 @@ I tried to get the Cancel link in a button.
     });
   </script>
 
+  My modal Disappeared when I added bootstrap. The problem was that I had the wrong version of boostrap. I found the correct version by checking in the devcontainer.json.
+
 
 
 
