@@ -121,7 +121,7 @@ def todo_completed_update(request, pk):
         form = TodoForm(request.POST, instance=todo)
         if form.is_valid():
             form.save()
-            return redirect('todo:todo_list')
+            return redirect('todo:todo_completed_update', pk=pk)
     else:
         form = TodoForm(instance=todo)
     return render(request, 'todo/todo_completed_update.html', {'form': form, 'completed_todo': todo})
@@ -133,7 +133,7 @@ def todo_completed_delete(request, pk):
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
         todo.delete()
-        return redirect('todo:todo_list')
+        return redirect('todo:todo_completed_delete', pk=pk)
     return render(request, 'todo/todo_completed_delete.html', {'todo': todo})
 
 

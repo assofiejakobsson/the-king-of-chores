@@ -2,6 +2,16 @@
 
 Bug 
 
+I tried to get the Cancel link in a button.
+ <button><a href="{% url 'todo:todo_list' %}">Cancel</a></button>
+
+ I fixed it using Javascript.
+ <button type="button" id="cancelButton">Cancel</button>
+  <script>
+    document.getElementById("cancelButton").addEventListener("click", function() {
+      window.location.href = "{% url 'todo:todo_list' %}";
+    });
+  </script>
 
 
 
