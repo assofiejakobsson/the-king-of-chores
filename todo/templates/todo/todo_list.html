@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Todo List</h2>
+
 <div class="container">
   <h2>Todo List</h2>
   <form id="addTaskForm" method="POST" action="{% url 'todo:todo_create' %}">
@@ -50,7 +50,7 @@
       <div class="btn-group float-right">
         <a href="{% url 'todo:todo_view' pk=todo.pk %}" class="btn btn-info">View</a>
         <a href="{% url 'todo:todo_completed_update' pk=todo.pk %}" class="btn btn-warning">Edit</a>
-        <a href="{% url 'todo:todo_completed_delete' pk=todo.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'todo:todo_completed_delete' pk=todo.pk %}" class="btn btn-danger">Delete</a> 
       </div>
     </li>
     {% endfor %}

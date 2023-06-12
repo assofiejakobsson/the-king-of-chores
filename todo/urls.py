@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import todo_complete, todo_list, todo_create, todo_delete, todo_view, todo_update, update_completed_by, todo_guest_complete, todo_completed_update, todo_completed_delete
+from .views import todo_complete, todo_list, todo_create, todo_delete, todo_view, todo_update, update_completed_by, todo_completed_update, todo_completed_delete
 
 app_name = 'todo'
 
@@ -15,9 +15,3 @@ urlpatterns = [
     path('completed_delete/<int:pk>/', todo_completed_delete, name='todo_completed_delete'),
 ]
 
-""" urlpatterns = [
-    path('', views.todo_list, name='todo_list'),
-    path('create/', views.todo_create, name='todo_create'),
-    path('update/<int:pk>/', views.todo_update, name='todo_update'),
-    path('delete/<int:pk>/', views.todo_delete, name='todo_delete'),
-] """
