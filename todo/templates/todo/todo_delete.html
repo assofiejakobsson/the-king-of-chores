@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Task</h1>
-  <p>Are you sure you want to delete the following task?</p>
-  <p>Title: {{ todo.title }}</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-    <button type="button" id="cancelButton">Cancel</button>
-  </form>
+  <div class="container bg-dark text-light py-4">
+    <h1 class="text-light">Delete Task</h1>
+    <p class="text-light">Are you sure you want to delete the following task?</p>
+    <p class="text-light">Title: {{ todo.title }}</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete</button>
+      <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
+    </form>
+  </div>
 
   <script>
     document.getElementById("cancelButton").addEventListener("click", function() {
       window.location.href = "{% url 'todo:todo_list' %}";
     });
   </script>
+
 {% endblock %}

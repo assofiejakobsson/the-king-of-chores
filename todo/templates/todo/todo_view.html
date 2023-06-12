@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Task Details</h2>
-  <p><strong>Title:</strong> {{ todo.title }}</p>
-  <p><strong>Description:</strong> {{ todo.description }}</p>
-  <p><strong>Completed:</strong> {% if todo.completed %}Yes{% else %}No{% endif %}</p>
-  {% if todo.completed_by %}
-    <p><strong>Completed By:</strong> {{ todo.completed_by }}</p>
-  {% endif %}
-  <a href="{% url 'todo:todo_delete' pk=todo.pk %}"><button>Delete</button></a>
-  <a href="{% url 'todo:todo_list' %}"><button>Back</button></a>
+  <div class="container bg-dark text-light py-4">
+    <h2 class="text-light">Task Details</h2>
+    <div class="card bg-dark text-light">
+      <div class="card-body">
+        <h5 class="card-title">{{ todo.title }}</h5>
+        <p class="card-text">{{ todo.description }}</p>
+        <p class="card-text"><strong>Completed:</strong> {% if todo.completed %}Yes{% else %}No{% endif %}</p>
+        {% if todo.completed_by %}
+          <p class="card-text"><strong>Completed By:</strong> {{ todo.completed_by }}</p>
+        {% endif %}
+        <a href="{% url 'todo:todo_delete' pk=todo.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'todo:todo_list' %}" class="btn btn-secondary">Back</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}

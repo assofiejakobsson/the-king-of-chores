@@ -1,0 +1,35 @@
+body {
+    background-image: linear-gradient(to bottom, #5aa29a, #40b997, #47cd82, #70de5d, #a8eb12);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+
+.container { 
+    max-width: 500px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgb(61, 60, 60);
+    
+    }
+
+
+
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+  
+form {
+      margin-top: 20px;
+}
+  
+   button {
+    margin-right: 10px;
+}

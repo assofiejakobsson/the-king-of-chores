@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Update Completed Task</h1>
-  <form method="post" action="{% url 'todo:todo_completed_update' pk=completed_todo.pk %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update</button>
-    <button type="button" id="cancelButton">Cancel</button>
-  </form>
-
+<div class="container bg-dark text-light py-4">
+  <div class="container">
+    <h1>Update Completed Task</h1>
+    <form method="post" action="{% url 'todo:todo_completed_update' pk=completed_todo.pk %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
+    </form>
+  </div>
+</div>
   <script>
     document.getElementById("cancelButton").addEventListener("click", function() {
       window.location.href = "{% url 'todo:todo_list' %}";
