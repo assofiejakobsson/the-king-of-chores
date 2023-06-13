@@ -7,14 +7,20 @@
     <form method="post" action="{% url 'todo:todo_completed_update' pk=completed_todo.pk %}">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit" class="btn btn-primary">Update</button>
-      <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
+      <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update this task?')">Update</button>
+      <button type="button" class="btn btn-secondary" id="cancelButton">Back</button>
     </form>
   </div>
 </div>
-  <script>
-    document.getElementById("cancelButton").addEventListener("click", function() {
-      window.location.href = "{% url 'todo:todo_list' %}";
-    });
-  </script>
+<script>
+  document.getElementById("cancelButton").addEventListener("click", function() {
+    window.location.href = "{% url 'todo:todo_list' %}";
+  });
+</script>
+
 {% endblock %}
+
+
+
+
+
