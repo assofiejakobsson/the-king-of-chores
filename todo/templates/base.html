@@ -37,11 +37,21 @@
     </div>
   </nav>
 
-  <div class="container mt-4">
-    {% block content %}
-    {% endblock %}
+  <div class="wrapper">
+    <div class="container mt-4">
+      {% block content %}
+      {% endblock %}
+    </div>
   </div>
 
+  <footer class="footer bg-dark">
+    <div class="container">
+      <a class="footer-logo text-light" href="{% url 'todo:todo_list' %}">The King Of Chores</a>
+      <span class="text-light">Contact: thekingofchores@gmail.com | +46 234 567 890</span> 
+    </div> 
+  </footer>
+   
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 </html>

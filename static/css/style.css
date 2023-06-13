@@ -3,6 +3,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -12,9 +14,15 @@ body {
     margin: 0 auto; 
     padding: 20px; 
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgb(61, 60, 60);
+    box-shadow: 0 2px 4px #343a40;
     
-    }
+}
+
+.wrapper {
+    flex: 1;
+    overflow: hidden;
+    
+}
 
 
 
@@ -24,8 +32,8 @@ h1 {
     margin-bottom: 20px;
 }
 
-
   
+
 form {
       margin-top: 20px;
 }
@@ -33,3 +41,23 @@ form {
    button {
     margin-right: 10px;
 }
+
+
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .footer-logo {
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  .footer span {
+    color: #fff;
+  }

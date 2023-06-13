@@ -16,7 +16,9 @@ I tried to get the Cancel link in a button.
   My modal Disappeared when I added bootstrap. The problem was that I had the wrong version of boostrap. I found the correct version by checking in the devcontainer.json.
 
 
+.wrapper. https://css-tricks.com/best-way-implement-wrapper-css/
 
+https://mycolor.space/gradient?ori=to+bottom&hex=%23053337&hex2=%23A8EB12&sub=1
 
 Welcome,
 
