@@ -12,7 +12,7 @@ from django.db.models import F
 
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'todo/home.html')
 
 
 @csrf_exempt
