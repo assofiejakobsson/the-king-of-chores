@@ -10,6 +10,10 @@ from .models import Todo
 from django.db.models import F
 
 
+@login_required
+def home(request):
+    return render(request, 'home.html')
+
 
 @csrf_exempt
 @login_required
