@@ -32,11 +32,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'the-king-of-chores.herokuapp.com',
     '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu99.gitpod.io',
+    '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu100.gitpod.io', 
     'localhost',
     '127.0.0.1',
     '8000-assofiejakobsson-the-kin-ygqo0xcb02.us2.codeanyapp.com',
