@@ -86,19 +86,7 @@ def todo_update(request, pk):
     else:
         form = TodoForm(instance=todo)
     return render(request, 'todo/todo_update.html', {'form': form, 'completed_todo': todo})
-""" def todo_update(request, pk):
-    todo = Todo.objects.get(pk=pk)
-    if request.method == 'POST':
-        form = TodoForm(request.POST, instance=todo)
-        if form.is_valid():
-            todo = form.save(commit=False)
-            todo.completed_by = request.POST.get('completed_by', '')
-            todo.completed = True
-            todo.save()
-            return redirect('todo:todo_list')
-    else:
-        form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_update.html', {'form': form, 'completed_todo': todo}) """
+
 
     
 @login_required
