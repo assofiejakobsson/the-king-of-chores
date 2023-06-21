@@ -15,7 +15,7 @@ def home(request):
     return render(request, 'todo/home.html')
 
 
-@csrf_exempt
+
 @login_required
 def update_completed_by(request, todo_id):
     if request.method == 'POST':
@@ -47,7 +47,7 @@ def todo_list(request):
     }
     return render(request, 'todo/todo_list.html', context)
 
-@csrf_protect
+
 @login_required
 def todo_create(request):
     if request.method == 'POST':
@@ -74,7 +74,7 @@ def todo_complete(request, pk):
 
 
 
-@csrf_protect
+
 @login_required
 def todo_update(request, pk):
     todo = Todo.objects.get(pk=pk)

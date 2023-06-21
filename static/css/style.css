@@ -5,12 +5,13 @@ body {
     background-attachment: fixed;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 
-.navbar-brand {
+a.navbar-brand {
     font-family: 'Kristi', cursive;
-    font-size: 20px;
+    font-size: 160%;
     color: #fff;
     text-decoration: none; 
     margin-right: 10px;
@@ -31,7 +32,8 @@ body {
 .wrapper {
     flex: 1;
     overflow: hidden;
-    
+    padding-bottom: 100px;
+    margin-bottom: 20px;
 }
 
 
@@ -65,19 +67,20 @@ button {
 
 
 .footer {
-    background-color: #343a40;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
     position: fixed;
-    bottom: 0;
-    width: 100%;
+      bottom: 0;
+      width: 100%;
+      background-color: #343a40;
+      padding: 20px 0;
+      text-align: center;
+      color: #fff;
+    
   }
 
 
   .footer-logo  {
     font-family: 'Kristi', cursive;
-    font-size: 20px;
+    font-size: 160%;
     color: #fff;
     text-decoration: none;
     margin-right: 10px;
