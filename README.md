@@ -1,4 +1,9 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+The King Of Chores is a todo list app built with Django. It allows users to create, manage, and complete tasks. 
+The target audience for this webapp is families or other groups of people who need a to-do list where they can create a to do list together. And so they can see who did what.
+
+The live link can be found here - [The King Of Chores](https://the-king-of-chores.herokuapp.com/)
+
+![responsive](assets/images/responsive.png)
 
 Bug 
 
