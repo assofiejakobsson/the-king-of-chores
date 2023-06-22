@@ -8,20 +8,25 @@
         <h2>Register</h2>
         <form method="post" class="my-4">
           {% csrf_token %}
+          <!-- Render the username field -->
           <div class="form-group">
             <label for="username">Username:</label>
             {{ form.username }}
           </div>
+          <!-- Render the password field -->
           <div class="form-group">
             <label for="password">Password:</label>
             {{ form.password1 }}
           </div>
+          <!-- Render the password confirmation field -->
           <div class="form-group">
             <label for="password">Confirm Password:</label>
             {{ form.password2 }}
           </div>
+          <!-- Submit button -->
           <button type="submit" class="btn btn-primary">Register</button>
         </form>
+        <!-- Link to the login page -->
         <p>Already have an account? <a href="{% url 'accountapp:login' %}" class="btn btn-link text-light">Login</a></p>
       </div>
     </div>

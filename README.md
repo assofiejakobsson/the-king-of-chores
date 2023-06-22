@@ -46,6 +46,10 @@ The following user stories were labelled as "could have" and "Won't Have" on my 
 - As a user, I want to be able to compete with invited users to see who can complete the highest number of tasks. This creates a sense of competition and motivation among users.
 - As a user, I want the system to track and display the number of completed tasks for each invited user. This allows me to compare my progress with other users and see how I rank.
 
+### User Stories
+
+![User story diagram](assets/readme/images/user_story_diagram.png)
+
 #### Colour Scheme
 <small><i><a href='https://coolors.co/ffffff-343a40-5aa29a-40b997-47cd82-70de5d-a8eb12'>Colour palette from Coolors</a></i></small>
 
@@ -104,6 +108,20 @@ The colors are designed with ease of use in mind.
 
 ![Delete page](assets/readme/wireframes/delete_page.png)
 </details>
+
+## Agile Methodology
+
+Github projects was used to manage the development process using an agile approach. The link to my project board is [here.](https://github.com/users/assofiejakobsson/projects/23)
+
+## Data Model
+
+The diagram below details the database schema.
+
+![Database Schema](assets/readme/images/database_schema.png)
+
+## Testing
+
+Testing and results can be found [here](/TESTING.md)
 
 
 Bug 
