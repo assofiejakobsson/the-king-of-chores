@@ -3,7 +3,108 @@ The target audience for this webapp is families or other groups of people who ne
 
 The live link can be found here - [The King Of Chores](https://the-king-of-chores.herokuapp.com/)
 
-![responsive](assets/images/responsive.png)
+![responsive](assets/readme/images/responsive.png)
+
+
+
+
+
+
+
+<!-- <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small> -->
+## User Experience (UX)
+
+A visitor to The King Of Chores. Is most likely a small group of people such as a family. 
+And with a need to create a common to-do list where they can see what needs to be done and who has done what.
+
+### User Stories
+
+#### EPIC | User Profile
+- As a user, I want to be able to view my login status. This provides me with information about my authentication status.
+- As a user, I want the ability to log out of my account to ensure the security of my personal information and prevent unauthorized access.
+- As a user, I want to be able to log in to my account using my credentials. This allows me to access personalized features and view my own 
+  data.
+- As a user, I want to be able to create a new account by registering with a username.
+  This allows me to have a unique identity within the system and access its functionalities.
+
+#### EPIC | List of chores
+- As a user, I want the ability to check off completed chores and mark them with my name. This allows me to take ownership of the tasks I have completed and keep a record of my contributions.
+- As a user, I want to be able to view a list of completed chores that are marked with the name of the person who completed them. This helps me track the progress and accountability of each individual.
+- As a user, I want to be able to delete unwanted or completed chores from the list. This helps me keep the chore list organized and remove any unnecessary tasks.
+- As a user, I want the ability to edit the details of a chore, such as its title, description or how completed task. This allows me to make necessary changes or updates to the tasks as needed.
+- As a user, I want to see a comprehensive list of all the chores. This helps me have an overview of the tasks that need to be done.
+- As a user, I want the ability to add new chores to the list. This allows me to include new tasks that need to be completed.
+
+The following user stories were labelled as "could have" and "Won't Have" on my project board on Github.
+
+#### EPIC | List of chores
+- As a user, I would like the option to select multiple tasks and delete them simultaneously. This provides a more efficient way of managing and removing multiple tasks from the list.
+
+#### EPIC | Game Functionality
+- As a user, I want the system to track and display the number of completed tasks for each invited user. This allows me to compare my progress with other users and see how I rank.
+- As a user, I would like to see a leaderboard that showcases the top performers based on completed tasks. This adds a competitive element and encourages users to complete more tasks.
+- As a user, I want to be able to compete with invited users to see who can complete the highest number of tasks. This creates a sense of competition and motivation among users.
+- As a user, I want the system to track and display the number of completed tasks for each invited user. This allows me to compare my progress with other users and see how I rank.
+
+#### Colour Scheme
+<small><i><a href='https://coolors.co/ffffff-343a40-5aa29a-40b997-47cd82-70de5d-a8eb12'>Colour palette from Coolors</a></i></small>
+
+![Colour Palette](assets/readme/images/colour_palete.png)
+
+The colour scheme of the site is mainly linear-gradient. The rest is bg-dark and text-light boostrap.
+
+The colors are designed with ease of use in mind. 
+
+
+<details>
+
+ <summary>Login Page</summary>
+
+![Login page](assets/readme/wireframes/login_page.png)
+</details>
+
+<details>
+
+<summary>Register Page</summary>
+
+![Register page](assets/readme/wireframes/register_page.png)
+</details>
+
+<details>
+
+<summary>Home Page</summary>
+
+![Home page](assets/readme/wireframes/home_page.png)
+</details>
+
+<details>
+
+<summary>Todo List Page</summary>
+
+![Todo list page](assets/readme/wireframes/todolist_page.png)
+</details>
+
+<details>
+
+<summary>View Page</summary>
+
+![View page](assets/readme/wireframes/view_page.png)
+</details>
+
+<details>
+
+<summary>Update Page</summary>
+
+![View page](assets/readme/wireframes/update_page.png)
+</details>
+
+<details>
+
+<summary>Delete Page</summary>
+
+![Delete page](assets/readme/wireframes/delete_page.png)
+</details>
+
 
 Bug 
 
