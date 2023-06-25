@@ -22,6 +22,12 @@ And with a need to create a common to-do list where they can see what needs to b
 #### EPIC | User Profile
 - As a user, I want to be able to log in to my account using my credentials. This allows me to access personalized features and view my own 
   data.
+
+
+
+
+
+
 - As a user, I want to be able to create a new account by registering with a username.
   This allows me to have a unique identity within the system and access its functionalities.
 - As a user, I want to be able to view my login status. This provides me with information about my authentication status.
