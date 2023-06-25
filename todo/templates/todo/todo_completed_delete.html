@@ -1,16 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- Extend the 'base.html' template -->
 </body>
-{% block content %}
+{% block content %}  <!-- Start the content section for delete completed task -->
 
-  <div class="container bg-dark text-light py-4">
+<div class="container bg-dark text-light py-4">
     <h2>Delete Task</h2>
     <p>Are you sure you want to delete this task?</p>
     <form method="POST" action="{% url 'todo:todo_delete' pk=todo.pk %}">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger">Delete</button>
-      <a href="{% url 'todo:todo_list' %}" class="btn btn-secondary">Cancel</a>
+      {% csrf_token %}  <!-- Include the CSRF token for security -->
+      <button type="submit" class="btn btn-danger">Delete</button> <!-- button for delete the task -->
+      <a href="{% url 'todo:todo_list' %}" class="btn btn-secondary">Cancel</a> <!-- button for go to cancel -->
     </form>
-  </div>
+</div>
 
-{% endblock %}
+{% endblock %}  <!-- End of the content section -->
+
 </body>

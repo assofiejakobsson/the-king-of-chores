@@ -1,13 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}  <!-- Extend the 'base.html' template -->
 
-{% block content %}
+{% block content %}  <!-- Start the content section for create task-->
 
 <form method="POST" action="{% url 'todo:todo_create' %}">
-  {% csrf_token %}
-  <input type="text" name="title" placeholder="Enter task title" required>
-  <button type="submit">Add Task</button>
-  
+  {% csrf_token %}  <!-- Add CSRF token for form the submission security -->
+  <input type="text" name="title" placeholder="Enter task title" required>  <!-- Text input for task title with required attribute -->
+  <button type="submit">Add Task</button>  <!-- Submit button for adding the task -->
 </form>
 
-
-{% endblock %}
+{% endblock %}  <!-- End of the content section -->

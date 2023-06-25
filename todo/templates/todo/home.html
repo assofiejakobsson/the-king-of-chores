@@ -1,9 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}  <!-- Extend the 'base.html' template -->
 
-{% block content %}
+{% block content %}  <!-- Start the content section fore the home page -->
+
 <div class="container bg-dark text-light py-4">
-    <h2>Welcome to, The king of chores!</h2>
+    <h2>Welcome to The King of Chores!</h2>
     <p>Here you can create a to-do list for the whole family. You can add as many tasks as you want. When a task is marked as complete, you enter the name of the person who performed the task for an easier overview of who did what.</p>
-    <a href="{% url 'todo:todo_list' %}" class="btn btn-primary">Go to Todo List</a>
+    <a href="{% url 'todo:todo_list' %}" class="btn btn-primary">Go to Todo List</a><!-- button for go to todolist -->
 </div>
-{% endblock %}
+
+{% endblock %}  <!-- End of the content section -->

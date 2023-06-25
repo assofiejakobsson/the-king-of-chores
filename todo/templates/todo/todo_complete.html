@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-
-<form method="POST" action="{% url 'todo:todo_complete' pk=todo.pk %}">
-  {% csrf_token %}
-  <label for="completed_by">Completed By:</label>
-  <input type="text" id="completed_by" name="completed_by" required>
-  <button type="submit">Complete</button>
-</form>
-

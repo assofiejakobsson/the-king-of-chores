@@ -1,29 +1,32 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- Extend the 'base.html' template -->
 
-{% block content %}
+{% block content %} <!-- Start the content section for update the task -->
 <div class="container bg-dark text-light py-4">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h1>Update Task</h1>
+        <!--Form for the update task-->
         <form method="post" action="{% url 'todo:todo_update' pk=completed_todo.pk %}">
           {% csrf_token %}
           <div class="form-group">
             <label for="id_task">Title:</label>
-            {{ form.title }}
+            {{ form.title }} <!-- Input field for the task title -->
           </div>
           <div class="form-group">
             <label for="id_completed">Completed:</label>
-            {{ form.completed }}
+            {{ form.completed }} <!-- Checkbox for marking the task as completed -->
+          </div>
+          <div class="form-group">
           </div>
           <div class="form-group">
             <label for="id_completed_by">Completed by:</label>
-            {{ form.completed_by }}
+            {{ form.completed_by }} <!-- Input field for entering the name of the person who completed the task -->
           </div>
           <div class="form-group">
             <label for="id_description">Description:</label>
-            {{ form.description }}
-          </div>
+            {{ form.description }}  <!-- Input field for the task description -->
+          </div> <!--Buttons for update and go back to the todolist-->
           <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update this task?')">Update</button>
           <button type="button" class="btn btn-secondary" id="cancelButton">Back</button>
         </form>
@@ -37,7 +40,7 @@
   });
 </script>
 
-{% endblock %}
+{% endblock %} <!-- End of the content section -->
 
 
 

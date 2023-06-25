@@ -12,12 +12,14 @@ from django.db.models import F
 
 @login_required
 def home(request):
+    #Renders the home page.
     return render(request, 'todo/home.html')
 
 
 
 @login_required
 def update_completed_by(request, todo_id):
+    #Updates the 'completed_by' field of a Todo object.
     if request.method == 'POST':
         completed_by = request.POST.get('completed_by', '')
         try:
@@ -29,8 +31,10 @@ def update_completed_by(request, todo_id):
             return JsonResponse({'success': False, 'error': 'Todo not found'})
     return JsonResponse({'success': False, 'error': 'Invalid request'})
 
+
 @login_required
 def todo_list(request):
+    #Renders the list of both completed an uncompleted tasks.
     completed_todos = Todo.objects.filter(user=request.user, completed=True).order_by('completed_by', 'title')
     completed_by_list = completed_todos.values_list('completed_by', flat=True).distinct()
 
@@ -49,6 +53,7 @@ def todo_list(request):
 
 
 @login_required
+#Creates a new task.
 def todo_create(request):
     if request.method == 'POST':
         form = TodoForm(request.POST)
@@ -63,6 +68,7 @@ def todo_create(request):
 
 @login_required
 def todo_complete(request, pk):
+    #Marks a task as completed.
     todo = get_object_or_404(Todo, pk=pk)
     if request.method == 'POST':
         completed_by = request.POST.get('completed_by', '')
@@ -70,13 +76,14 @@ def todo_complete(request, pk):
         todo.completed = True
         todo.save()
         return redirect('todo:todo_list')
-    return render(request, 'todo/todo_complete.html', {'todo': todo})
+    
 
 
 
 
 @login_required
 def todo_update(request, pk):
+    #Update a task.
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
         form = TodoForm(request.POST, instance=todo)
@@ -91,14 +98,17 @@ def todo_update(request, pk):
     
 @login_required
 def todo_delete(request, pk):
+    #Delete task.
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
         todo.delete()
         return redirect('todo:todo_list')
     return render(request, 'todo/todo_delete.html', {'todo': todo})
 
+
 @login_required
 def todo_view(request, pk):
+    #View task.
     todo = get_object_or_404(Todo, pk=pk)
     logged_in_user = request.user
     return render(request, 'todo/todo_view.html', {'todo': todo, 'user': logged_in_user})
@@ -110,6 +120,7 @@ def todo_view(request, pk):
 
 @login_required
 def todo_completed_update(request, pk):
+    #Update completed task.
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
         form = TodoForm(request.POST, instance=todo)
@@ -124,6 +135,7 @@ def todo_completed_update(request, pk):
 
 @login_required
 def todo_completed_delete(request, pk):
+    #Delete completed task.
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
         todo.delete()

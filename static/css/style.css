@@ -1,3 +1,4 @@
+/* Set the background image and properties */
 body {
     background-image: linear-gradient(to bottom, #5aa29a, #40b997, #47cd82, #70de5d, #a8eb12);
     background-size: cover;
@@ -8,27 +9,25 @@ body {
     min-height: 100vh;
 }
 
-
+/* Styling for the navbar brand */
 a.navbar-brand {
     font-family: 'Kristi', cursive;
     font-size: 160%;
     color: #fff;
     text-decoration: none; 
     margin-right: 10px;
-    
 }
 
-
-
+/* Styling for the container */
 .container { 
     max-width: 500px; 
     margin: 0 auto; 
     padding: 20px; 
     border-radius: 5px;
     box-shadow: 0 2px 4px #343a40;
-    
 }
 
+/* Styling for the wrapper */
 .wrapper {
     flex: 1;
     overflow: hidden;
@@ -36,56 +35,48 @@ a.navbar-brand {
     margin-bottom: 35px;
 }
 
-
+/* Styling for heading elements */
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-
 h2, h3, p {
     font-family: 'Open Sans', sans-serif;
 }
-  
 
+/* Styling for forms */
 form {
     margin-top: 20px;
-      
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
-  }
-  
+}
+
+/* Styling for buttons */
 button {
     margin-right: 10px;
-    
 }
 
-
-
+/* Styling for the footer */
 .footer {
     position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #343a40;
-      text-align: center;
-      color: #fff;
-    
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40;
+    text-align: center;
+    color: #fff;
 }
 
-
+/* Styling for the footer logo */
 .footer-logo  {
     font-family: 'Kristi', cursive;
     font-size: 160%;
     color: #fff;
     text-decoration: none;
     margin-right: 10px;
-    
 }
-
-
-  
 

@@ -1,21 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}  <!-- Extend the 'base.html' template -->
 
-{% block content %}
-  <div class="container bg-dark text-light py-4">
-    <h1 class="text-light">Delete Task</h1>
-    <p class="text-light">Are you sure you want to delete the following task?</p>
-    <p class="text-light">Title: {{ todo.title }}</p>
-    <form method="post">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger">Delete</button>
-      <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
-    </form>
-  </div>
+{% block content %}  <!-- Start the content section for delete taask -->
 
-  <script>
-    document.getElementById("cancelButton").addEventListener("click", function() {
-      window.location.href = "{% url 'todo:todo_list' %}";
-    });
-  </script>
+<div class="container bg-dark text-light py-4">
+  <h1 class="text-light">Delete Task</h1>
+  <p class="text-light">Are you sure you want to delete the following task?</p>
+  <p class="text-light">Title: {{ todo.title }}</p>
+  <form method="post">
+    {% csrf_token %}  <!-- Include the CSRF token for security -->
+    <!-- Buttons for delete and cancel -->
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
+  </form>
+</div>
 
-{% endblock %}
+<script>
+  // JavaScript code to handle cancel button click
+  document.getElementById("cancelButton").addEventListener("click", function() {
+    window.location.href = "{% url 'todo:todo_list' %}";  // Redirect to the todo list page
+  });
+</script>
+
+{% endblock %}  <!-- End of the content section -->

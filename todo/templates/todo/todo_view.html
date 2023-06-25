@@ -1,6 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- Extend the 'base.html' template -->
 
-{% block content %}
+{% block content %} <!-- Start the content section for view task -->
+
   <div class="container bg-dark text-light py-4">
     <h2 class="text-light">Task Details</h2>
     <div class="card bg-dark text-light">
@@ -11,9 +12,10 @@
         {% if todo.completed_by %}
           <p class="card-text"><strong>Completed By:</strong> {{ todo.completed_by }}</p>
         {% endif %}
+        <!--buttons for delete a task and for go back to the todolist -->
         <a href="{% url 'todo:todo_delete' pk=todo.pk %}" class="btn btn-danger">Delete</a>
         <a href="{% url 'todo:todo_list' %}" class="btn btn-secondary">Back</a>
       </div>
     </div>
   </div>
-{% endblock %}
+{% endblock %} <!-- End of the content section -->
