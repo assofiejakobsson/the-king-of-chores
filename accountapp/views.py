@@ -34,7 +34,7 @@ def user_login(request):
             # Log in the user
             login(request, user)
             # Redirect to the home page
-            return redirect('todo:home')
+            return redirect('todo:todo_list')
     else:
         # Display an empty AuthenticationForm for GET requests
         form = AuthenticationForm()

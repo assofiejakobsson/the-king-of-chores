@@ -10,7 +10,6 @@ from .models import Todo
 from django.db.models import F
 
 
-@login_required
 def home(request):
     #Renders the home page.
     return render(request, 'todo/home.html')
