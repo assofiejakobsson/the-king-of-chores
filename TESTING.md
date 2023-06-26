@@ -4,6 +4,7 @@
 *As a user, I want to be able to create a new account by registering with a username.
   This allows me to have a unique identity within the system and access its functionalities.*
 
+
 ![homepage](assets/readme/features/home_page.png)
 
  - On the landing page, there is a short explanation in the middle of the page about the app. In the explanation, it appears that you need to register to be able to use the app.
@@ -81,6 +82,16 @@
 ![todolistpage](assets/readme/features/delete_page.png)
 
  - The user has the option to delete completed and uncompleted tasks.
+
+*As an admin, I want to have ful CRUD functionality for the users.*
+
+![todolistpage](assets/readme/features/admin_home_page.png)
+![todolistpage](assets/readme/features/admin_view_update_page.png)
+![todolistpage](assets/readme/features/admin_view_update_delete_page.png)
+![todolistpage](assets/readme/features/admin_add_todo_page.png)
+
+ - Admins have full access to CRUD functionality for all users and all tasks.
+
 
 
 
