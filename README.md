@@ -42,7 +42,7 @@ And with a need to create a common to-do list where they can see what needs to b
 - As a user, I want to see a comprehensive list of all the chores. This helps me have an overview of the tasks that need to be done.
 - As a user, I want the ability to add new chores to the list. This allows me to include new tasks that need to be completed.
 
-The following user stories were labelled as "could have" and "Won't Have" on my project board on Github.
+The following user stories where labelled as "could have" and "Won't Have" on my project board on Github.
 
 #### EPIC | List of chores
 - As a user, I would like the option to select multiple tasks and delete them simultaneously. This provides a more efficient way of managing and removing multiple tasks from the list.

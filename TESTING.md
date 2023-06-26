@@ -47,12 +47,43 @@
  - When the logged in user clicks on log out, they are taken back to the landing page as logged out.
 
 ### EPIC | List of chores
-- As a user, I want the ability to check off completed chores and mark them with my name. This allows me to take ownership of the tasks I have completed and keep a record of my contributions.
-- As a user, I want to be able to view a list of completed chores that are marked with the name of the person who completed them. This helps me track the progress and accountability of each individual.
-- As a user, I want to be able to delete unwanted or completed chores from the list. This helps me keep the chore list organized and remove any unnecessary tasks.
-- As a user, I want the ability to edit the details of a chore, such as its title, description or how completed task. This allows me to make necessary changes or updates to the tasks as needed.
-- As a user, I want to see a comprehensive list of all the chores. This helps me have an overview of the tasks that need to be done.
-- As a user, I want the ability to add new chores to the list. This allows me to include new tasks that need to be completed.
+*As a user, I want the ability to add new chores to the list. This allows me to include new tasks that need to be completed.*
+*As a user, I want to see a comprehensive list of all the chores. This helps me have an overview of the tasks that need to be done.*
+
+![add_task](assets/readme/features/add_task.png)
+![todolistpage](assets/readme/features/todolist_page.png)
+
+- There is the possibility to add as many details with description as the user wants.
+- The list shows uncompleted and completed tasks. This makes it easy for the user to see what needs and does not need to be done.
+
+*As a user, I want the ability to check off completed chores and mark them with my name. This allows me to take ownership of the tasks I have completed and keep a record of my contributions.*
+*As a user, I want to be able to view a list of completed chores that are marked with the name of the person who completed them. This helps me track the progress and accountability of each individual.*
+
+![todolistpage](assets/readme/features/todolist_page.png)
+![todolistpage](assets/readme/features/modal_completed_by.png)
+
+ - At the far right next to each unfinished task there is a completed button. When the user clicks on it, a modal appears where the user can enter the name of the person who performed the task.
+ - The user can see who did what as the completed tasks are grouped by the names of those who completed them.
+
+*As a user, I want the ability to view and edit the details of a chore, such as its title, description or how completed task. This allows me to make necessary changes or updates to the tasks as needed.*
+
+![todolistpage](assets/readme/features/todolist_page.png)
+![todolistpage](assets/readme/features/view_page.png)
+![todolistpage](assets/readme/features/edit_page.png)
+![todolistpage](assets/readme/features/edit_prompt.png)
+
+ - The user has the opportunity to view and update both completed and unfinished tasks.
+ - In order for the user to avoid unnecessary careless errors, a prompt message appears when the user clicks on update.
+
+*As a user, I want to be able to delete unwanted or completed chores from the list. This helps me keep the chore list organized and remove any unnecessary tasks.*
+
+![todolistpage](assets/readme/features/todolist_page.png)
+![todolistpage](assets/readme/features/delete_page.png)
+
+ - The user has the option to delete completed and uncompleted tasks.
+
+
+
 
 
 
