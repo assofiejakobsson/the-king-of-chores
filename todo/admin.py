@@ -4,4 +4,3 @@ from .models import Todo
 
 
 admin.site.register(Todo)
-

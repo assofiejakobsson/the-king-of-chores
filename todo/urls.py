@@ -27,7 +27,9 @@ urlpatterns = [
     path('create/', todo_create, name='todo_create'),
 
     # Update the "completed_by" field of a todo
-    path('update_completed_by/<int:todo_id>/', update_completed_by, name='update_completed_by'),
+    path(
+        'update_completed_by/<int:todo_id>/',
+        update_completed_by, name='update_completed_by'),
 
     # Mark a todo as complete
     path('complete/<int:pk>/', todo_complete, name='todo_complete'),
@@ -42,8 +44,12 @@ urlpatterns = [
     path('delete/<int:pk>/', todo_delete, name='todo_delete'),
 
     # Update a completed todo
-    path('completed_update/<int:pk>/', todo_completed_update, name='todo_completed_update'),
+    path(
+        'completed_update/<int:pk>/', todo_completed_update,
+        name='todo_completed_update'),
 
     # Delete a completed todo
-    path('completed_delete/<int:pk>/', todo_completed_delete, name='todo_completed_delete'),
+    path(
+        'completed_delete/<int:pk>/', todo_completed_delete,
+        name='todo_completed_delete'),
 ]

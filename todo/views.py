@@ -11,14 +11,13 @@ from django.db.models import F
 
 
 def home(request):
-    #Renders the home page.
+    # Renders the home page.
     return render(request, 'todo/home.html')
-
 
 
 @login_required
 def update_completed_by(request, todo_id):
-    #Updates the 'completed_by' field of a Todo object.
+    # Updates the 'completed_by' field of a Todo object.
     if request.method == 'POST':
         completed_by = request.POST.get('completed_by', '')
         try:
@@ -33,9 +32,11 @@ def update_completed_by(request, todo_id):
 
 @login_required
 def todo_list(request):
-    #Renders the list of both completed an uncompleted tasks.
-    completed_todos = Todo.objects.filter(user=request.user, completed=True).order_by('completed_by', 'title')
-    completed_by_list = completed_todos.values_list('completed_by', flat=True).distinct()
+    # Renders the list of both completed an uncompleted tasks.
+    completed_todos = Todo.objects.filter(
+        user=request.user, completed=True).order_by('completed_by', 'title')
+    completed_by_list = completed_todos.values_list(
+        'completed_by', flat=True).distinct()
 
     uncompleted_todos = Todo.objects.filter(user=request.user, completed=False)
 
@@ -52,7 +53,7 @@ def todo_list(request):
 
 
 @login_required
-#Creates a new task.
+# Creates a new task.
 def todo_create(request):
     if request.method == 'POST':
         form = TodoForm(request.POST)
@@ -65,9 +66,10 @@ def todo_create(request):
         form = TodoForm()
     return render(request, 'todo/todo_create.html', {'form': form})
 
+
 @login_required
 def todo_complete(request, pk):
-    #Marks a task as completed.
+    # Marks a task as completed.
     todo = get_object_or_404(Todo, pk=pk)
     if request.method == 'POST':
         completed_by = request.POST.get('completed_by', '')
@@ -75,14 +77,11 @@ def todo_complete(request, pk):
         todo.completed = True
         todo.save()
         return redirect('todo:todo_list')
-    
-
-
 
 
 @login_required
 def todo_update(request, pk):
-    #Update a task.
+    # Update a task.
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
         form = TodoForm(request.POST, instance=todo)
@@ -91,13 +90,14 @@ def todo_update(request, pk):
             return redirect('todo:todo_update', pk=pk)
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_update.html', {'form': form, 'completed_todo': todo})
+    return render(
+        request, 'todo/todo_update.html',
+        {'form': form, 'completed_todo': todo})
 
 
-    
 @login_required
 def todo_delete(request, pk):
-    #Delete task.
+    # Delete task.
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
         todo.delete()
@@ -107,19 +107,19 @@ def todo_delete(request, pk):
 
 @login_required
 def todo_view(request, pk):
-    #View task.
+    # View task.
     todo = get_object_or_404(Todo, pk=pk)
     logged_in_user = request.user
-    return render(request, 'todo/todo_view.html', {'todo': todo, 'user': logged_in_user})
+    return render(
+        request, 'todo/todo_view.html', {'todo': todo, 'user': logged_in_user})
 
 
-
-#Crud funktion for the complted task
+# Crud funktion for the complted task
 
 
 @login_required
 def todo_completed_update(request, pk):
-    #Update completed task.
+    # Update completed task.
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
         form = TodoForm(request.POST, instance=todo)
@@ -128,13 +128,14 @@ def todo_completed_update(request, pk):
             return redirect('todo:todo_completed_update', pk=pk)
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todo/todo_completed_update.html', {'form': form, 'completed_todo': todo})
-
+    return render(
+        request, 'todo/todo_completed_update.html',
+        {'form': form, 'completed_todo': todo})
 
 
 @login_required
 def todo_completed_delete(request, pk):
-    #Delete completed task.
+    # Delete completed task.
     todo = Todo.objects.get(pk=pk)
     if request.method == 'POST':
         todo.delete()

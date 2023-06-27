@@ -92,7 +92,56 @@
 
  - Admins have full access to CRUD functionality for all users and all tasks.
 
+## Validator Testing
 
+### HTML 
+
+The web app was Validate by URI [W3C HTML Validator](https://validator.w3.org/). And it was no errors or warnings. See the images below.
+
+<summary>Html</summary>
+
+<details>
+
+![W3C HTML Validator](assets/readme/testing/html_checker.png)
+</details>
+
+### CSS
+
+The web app was Validate by URI [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) And it was no errors or warnings. See the images below.
+
+<summary>Css</summary>
+<details>
+
+![W3C CSS Validator](assets/readme/testing/css_checker.png)
+</details>
+
+### Javascript
+
+No errors were found, but One undefined variable "$". it belongsnd  jQuery library. [Jshint](https://jshint.com/) 
+
+<details>
+
+<summary>Jshint</summary>
+
+![Jshint](assets/readme/testing/jshint_button.png)
+![Jshint](assets/readme/testing/jshint_todo_list.png)
+</details>
+
+### Python
+
+No errors were found, but One undefined variable "$". it belongsnd  jQuery library. [Jshint](https://jshint.com/) 
+
+<details>
+
+<summary>CI Python Linter</summary>
+
+![Jshint](assets/readme/testing/todo_admin.png)
+![Jshint](assets/readme/testing/todo_app_py.png)
+![Jshint](assets/readme/testing/todo_forms_py.png)
+![Jshint](assets/readme/testing/todo_models_py.png)
+![Jshint](assets/readme/testing/todo_urls_py.png)
+![Jshint](assets/readme/testing/todo_view_py.png)
+</details>
 
 
 

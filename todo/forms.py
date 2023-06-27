@@ -10,5 +10,3 @@ class TodoForm(forms.ModelForm):
         model = Todo
         # Fields to include in the form
         fields = ['title', 'completed', 'completed_by', 'description']
-
-

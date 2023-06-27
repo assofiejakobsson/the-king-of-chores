@@ -26,5 +26,3 @@ class Todo(models.Model):
     def __str__(self):
         # String representation of the Todo object (returns the title)
         return self.title
-        
-
