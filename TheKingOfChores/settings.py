@@ -24,7 +24,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -32,12 +31,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'the-king-of-chores.herokuapp.com',
     '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu99.gitpod.io',
-    '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu100.gitpod.io', 
+    '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu100.gitpod.io',
     'localhost',
     '127.0.0.1',
     '8000-assofiejakobsson-the-kin-ygqo0xcb02.us2.codeanyapp.com',
@@ -77,7 +76,7 @@ ROOT_URLCONF = 'TheKingOfChores.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/workspaces/the-king-of-chores/game/templates/game',],
+        'DIRS': ['/workspaces/the-king-of-chores/game/templates/game', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,7 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_STORAGE = (
+    'cloudinary_storage.storage.StaticHashedCloudinaryStorage')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

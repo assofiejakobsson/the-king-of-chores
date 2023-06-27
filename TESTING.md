@@ -141,6 +141,12 @@ No errors were found, but One undefined variable "$". it belongsnd  jQuery libra
 ![Jshint](assets/readme/testing/todo_models_py.png)
 ![Jshint](assets/readme/testing/todo_urls_py.png)
 ![Jshint](assets/readme/testing/todo_view_py.png)
+![Jshint](assets/readme/testing/accountapp_forms_py.png)
+![Jshint](assets/readme/testing/accountapp_apps_py.png)
+![Jshint](assets/readme/testing/accountapp_urls_py.png)
+![Jshint](assets/readme/testing/accountapp_view_py.png)
+![Jshint](assets/readme/testing/TheKingOfChores_settings_py.png)
+![Jshint](assets/readme/testing/TheKingOfChores_urls_py.png)
 </details>
 
 
