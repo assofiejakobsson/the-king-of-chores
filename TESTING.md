@@ -303,5 +303,30 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Contact information    | Display    | View contact info as email and Phone number                                 | Pass      |
 
 
+## Bugs 
+
+### Fixed Bugs
+
+
+ - I had problems with the return redirect link, I tried, among other things, return redirect('todo/todo_list,html'), return redirect('todo_list') and return redirect(reverse_lazy('todo_list'). Finally I got help from tutor and fich it works with this line return redirect('todo:todo_list').
+
+ - My modal Disappeared when I added bootstrap. The problem was that I had the wrong version of boostrap. I found the correct version by checking in the devcontainer.json. To understand this, I turned to slack.
+
+ - I tried to get the Cancel link in a button.
+ <button><a href="{% url 'todo:todo_list' %}">Cancel</a></button>
+
+ I fixed it using Javascript.
+ <button type="button" id="cancelButton">Cancel</button>
+  <script>
+    document.getElementById("cancelButton").addEventListener("click", function() {
+      window.location.href = "{% url 'todo:todo_list' %}";
+    });
+  </script>
+
+  ### Unfixed bugs:
+
+
+There are no known unfixed bugs. 
+
 
 
