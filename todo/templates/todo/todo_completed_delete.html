@@ -5,6 +5,7 @@
 <div class="container bg-dark text-light py-4">
     <h2>Delete Task</h2>
     <p>Are you sure you want to delete this task?</p>
+    <p class="text-light">Title: {{ todo.title }}</p>
     <form method="POST" action="{% url 'todo:todo_delete' pk=todo.pk %}">
       {% csrf_token %}  <!-- Include the CSRF token for security -->
       <button type="submit" class="btn btn-danger">Delete</button> <!-- button for delete the task -->

@@ -150,6 +150,158 @@ No errors were found, but One undefined variable "$". it belongsnd  jQuery libra
 </details>
 
 
+### Python
+All Python files were run through [Pep8](http://pep8online.com/) with no errors found. 
+
+### Lighthouse
+
+Lighthouse validation was run on all pages (both mobile and desktop) in order to check accessibility, performance, Best Practices and SEO. At first I received issues for my lables for name. And this is the result after I fixed it.
+
+| Page           | Performance  | Accessibility | Best Practices  | SEO |
+|----------------|:------------:|:-------------:|:---------------:|:---:|
+|                |              |               |                 |     |
+| Mobile         |              |               |                 |     |
+| Home           |           94 |            97 |              92 | 100 |
+| Todo list      |           84 |            95 |              92 | 100 |
+| View task      |           84 |            98 |              92 | 100 |
+| Update task    |           86 |            97 |              92 | 100 |
+| Delete task    |           86 |           100 |              92 | 100 |
+| Login          |           88 |            97 |              92 | 100 |
+| Register       |           90 |            97 |              92 | 100 |
+|                |              |               |                 |     |
+| Desktop        |              |               |                 |     |
+| Home           |           94 |           100 |             100 | 100 |
+| Todo list      |           94 |           100 |             100 | 100 |
+| View task      |           93 |            98 |             100 | 100 |
+| Update task    |           86 |            98 |             100 | 100 |
+| Delete task    |           94 |           100 |             100 | 100 |
+| Login          |           95 |           100 |             100 | 100 |
+| Register       |           95 |           100 |             100 | 100 |
+
+
+## Browser Testing
+- I have tested the web app on Google Chrome, Firefox, Safari and Edge browsers with no issues noted.
+
+
+## Device Testing
+- The web app was viewed on a variety of devices such as Laptop, iPad, samsung s21, s9, zflip 4 and motorola g8 plus. to ensure responsiveness on various screen sizes and bugs.
+
+
+## Manual Testing
+
+
+### Header
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Header                 |            |                                                                             |           |
+| Site Name (logo)       | Click      | Redirect to home                                                            | Pass      |
+| register Link          | click      | Visible when the user is not logged in and redirect to the register page.   | Pass      |
+| Log In Link            | Click      | Visible when the user is not logged in and redirect to the register page.   | Pass      |
+| Log out link           | click      | Visible when the user is logged in and redirect to the home page.           | Pass      |
+
+
+### Register page 
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Register page          |            |                                                                             |           |
+| Register form          | Display    | Inputfields for username, password, register btn. Login link                | Pass      |
+| Register(btn)          | Click      | The user get an account and redirects to the home page as logdein           | Pass      |
+| Login link             | Click      | Redirect to the login page                                                  | Pass      |
+
+
+### Login page 
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Register page          |            |                                                                             |           |
+| Login form             | Display    | Inputfields for username, password, login btn. Register link                | Pass      |
+| Login(btn)             | Click      | Redirects to the home page as logdein                                       | Pass      |
+| Register link          | Click      | Redirect to the register page                                               | Pass      |
+
+
+### Home page
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Home page              |            |                                                                             |           |
+| About information      | Display    |                                                                             | Pass      |
+| Go To The Todo List btn| click      | Redirect the todo list                                                      | Pass      |
+
+
+### Todo list page
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Todo list page         |            |                                                                             |           |
+| Add task (btn)         | Click      | Add task to the todo list                                                   | Pass      |
+| View Todolist          | Display    | Ful todolist overview whit task status                                      | Pass      |
+| Add task (btn)         | Click      | Add task to the todo list                                                   | Pass      |
+| View uncompledted(btn) | Click      | Redirect to the View page                                                   | Pass      |
+| Edit uncompleted(btn)  | Click      | Redirect to the Edit page                                                   | Pass      |
+| Delete uncompleted(btn)| Click      | Redirect to the Edit page                                                   | Pass      |
+| Complete(btn)          | Click      | Modal pop up                                                                | Pass      |
+| Modal                  | Display    | Whit inputfield for the name hwo completed the task and submit(btn)         | Pass      |
+| Modal submit(btn)      | Click      | The completed task marks as completed by the name in the inputfield         | Pass      |
+| Modal "X"(btn)         | Click      | The modal disepear                                                          | Pass      |
+| View compledted(btn)   | Click      | Redirect to the view page                                                   | Pass      |
+| Edit compledted(btn)   | Click      | Redirect to the completed edit page                                         | Pass      |
+| Delete compledted(btn) | Click      | Redirect to the completed deleted page                                      | Pass      |
+| View Todolist          | Display    | Ful todolist overview whit task status                                      | Pass      |
+
+
+### View page 
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| View page              |            |                                                                             |           |
+| Task details           | Display    | View tas title, description, completed status and completed by name         | Pass      |
+| Delete(btn)            | Click      | Redirect to the delete page                                                 | Pass      |
+| Back(btn)              | Click      | Redirect to the todo list page                                              | Pass      |
+
+
+### Edit page 
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Edit page              |            |                                                                             |           |
+| Form update            | Display    | Inputfields for title, description, completed check and completed by name   | Pass      |
+| Update(btn)            | Click      | Alert confirm message for update the task pop up                            | Pass      |
+| Alert ok(btn)          | Click      | Update the task                                                             | Pass      |
+| Alert cancel(btn)      | Click      | The task dose not update                                                    | Pass      |
+| Back(btn)              | Click      | Redirect to the todo list page                                              | Pass      |
+
+
+### delete page 
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Delete page            |            |                                                                             |           |
+| View delete page       | Display    | Confirm message for delete the chosen task                                  | Pass      |
+| Delete(btn)            | Click      | Task disepear and the user redirects to the todo list                       | Pass      |
+| Cancel(btn)            | Click      | redirect to the todo list                                                   | Pass      |
+
+
+### Edit completed page 
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Edit page              |            |                                                                             |           |
+| Form update            | Display    | Inputfields for title, description, completed check and completed by name   | Pass      |
+| Update(btn)            | Click      | Alert confirm message for update the task pop up                            | Pass      |
+| Alert ok(btn)          | Click      | Update the task                                                             | Pass      |
+| Alert cancel(btn)      | Click      | The task dose not update                                                    | Pass      |
+| Back(btn)              | Click      | Redirect to the todo list page                                              | Pass      |
+
+
+### Delete completed page 
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Delete page            |            |                                                                             |           |
+| View delete page       | Display    | Confirm message for delete the chosen task                                  | Pass      |
+| Delete(btn)            | Click      | Task disepear and the user redirects to the todo list                       | Pass      |
+| Cancel(btn)            | Click      | redirect to the todo list                                                   | Pass      |
+
+
+### Fotter
+| Element                | Action     | Expected Result                                                             | Pass/Fail |
+|------------------------|------------|-----------------------------------------------------------------------------|-----------|
+| Fotter                 |            |                                                                             |           |
+| Site Name (logo)       | Click      | Redirect to home                                                            | Pass      |
+| Contact information    | Display    | View contact info as email and Phone number                                 | Pass      |
+
 
 
 
