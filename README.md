@@ -124,21 +124,10 @@ The diagram below details the database schema.
 
 Testing and results can be found [here](/TESTING.md)
 
+## Security Features and Defensive Design
 
-Bug 
+### User Authentication
 
-I tried to get the Cancel link in a button.
- <button><a href="{% url 'todo:todo_list' %}">Cancel</a></button>
-
- I fixed it using Javascript.
- <button type="button" id="cancelButton">Cancel</button>
-  <script>
-    document.getElementById("cancelButton").addEventListener("click", function() {
-      window.location.href = "{% url 'todo:todo_list' %}";
-    });
-  </script>
-
-  My modal Disappeared when I added bootstrap. The problem was that I had the wrong version of boostrap. I found the correct version by checking in the devcontainer.json.
 
 
 .wrapper. https://css-tricks.com/best-way-implement-wrapper-css/

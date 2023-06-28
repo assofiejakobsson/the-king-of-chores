@@ -15,6 +15,7 @@ def home(request):
     return render(request, 'todo/home.html')
 
 
+@csrf_protect
 @login_required
 def update_completed_by(request, todo_id):
     # Updates the 'completed_by' field of a Todo object.
@@ -52,6 +53,7 @@ def todo_list(request):
     return render(request, 'todo/todo_list.html', context)
 
 
+@csrf_protect
 @login_required
 # Creates a new task.
 def todo_create(request):
@@ -67,6 +69,7 @@ def todo_create(request):
     return render(request, 'todo/todo_create.html', {'form': form})
 
 
+@csrf_protect
 @login_required
 def todo_complete(request, pk):
     # Marks a task as completed.
@@ -79,6 +82,7 @@ def todo_complete(request, pk):
         return redirect('todo:todo_list')
 
 
+@csrf_protect
 @login_required
 def todo_update(request, pk):
     # Update a task.
@@ -95,6 +99,7 @@ def todo_update(request, pk):
         {'form': form, 'completed_todo': todo})
 
 
+@csrf_protect
 @login_required
 def todo_delete(request, pk):
     # Delete task.
@@ -105,6 +110,7 @@ def todo_delete(request, pk):
     return render(request, 'todo/todo_delete.html', {'todo': todo})
 
 
+@csrf_protect
 @login_required
 def todo_view(request, pk):
     # View task.
@@ -117,6 +123,7 @@ def todo_view(request, pk):
 # Crud funktion for the complted task
 
 
+@csrf_protect
 @login_required
 def todo_completed_update(request, pk):
     # Update completed task.
@@ -133,6 +140,7 @@ def todo_completed_update(request, pk):
         {'form': form, 'completed_todo': todo})
 
 
+@csrf_protect
 @login_required
 def todo_completed_delete(request, pk):
     # Delete completed task.
