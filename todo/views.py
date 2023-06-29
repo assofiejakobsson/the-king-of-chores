@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from .forms import TodoForm
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
+from .forms import TodoForm
 from django.http import JsonResponse
 from .models import Todo
 from django.db.models import F
@@ -15,7 +15,6 @@ def home(request):
     return render(request, 'todo/home.html')
 
 
-@csrf_protect
 @login_required
 def update_completed_by(request, todo_id):
     # Updates the 'completed_by' field of a Todo object.
@@ -53,7 +52,6 @@ def todo_list(request):
     return render(request, 'todo/todo_list.html', context)
 
 
-@csrf_protect
 @login_required
 # Creates a new task.
 def todo_create(request):
@@ -69,7 +67,6 @@ def todo_create(request):
     return render(request, 'todo/todo_create.html', {'form': form})
 
 
-@csrf_protect
 @login_required
 def todo_complete(request, pk):
     # Marks a task as completed.
@@ -82,7 +79,6 @@ def todo_complete(request, pk):
         return redirect('todo:todo_list')
 
 
-@csrf_protect
 @login_required
 def todo_update(request, pk):
     # Update a task.
@@ -110,7 +106,6 @@ def todo_delete(request, pk):
     return render(request, 'todo/todo_delete.html', {'todo': todo})
 
 
-@csrf_protect
 @login_required
 def todo_view(request, pk):
     # View task.
@@ -123,7 +118,6 @@ def todo_view(request, pk):
 # Crud funktion for the complted task
 
 
-@csrf_protect
 @login_required
 def todo_completed_update(request, pk):
     # Update completed task.
@@ -140,7 +134,6 @@ def todo_completed_update(request, pk):
         {'form': form, 'completed_todo': todo})
 
 
-@csrf_protect
 @login_required
 def todo_completed_delete(request, pk):
     # Delete completed task.
