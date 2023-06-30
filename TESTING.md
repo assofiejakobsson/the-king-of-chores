@@ -1,3 +1,34 @@
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [User Story Testing](#user-story-testing)
+  - [EPIC |Profile](#epic-profile)
+  - [EPIC | List of chores](#epic--list-of-chores)
+- [Validator Testing](#validator-testing)
+  - [HTML](#html)
+  - [CSS](#css)
+  - [Javascript](#javascript)
+  - [Python](#python)
+  - [Lighthouse](#lighthouse)
+- [Browser Testing](#browser-testing)
+- [Device Testing](#device-testing)
+- [Manual Testing](#manual-testing)
+  - [Header](#header)
+  - [Register page](#register-page)
+  - [Login page](#login-page)
+  - [Home page](#home-page)
+  - [Todo list page](#todo-list-page)
+  - [View page](#view-page)
+  - [Edit page](#edit-page)
+  - [delete page](#delete-page)
+  - [Edit completed page](#edit-completed-page)
+  - [Delete completed page](#delete-completed-page)
+  - [Fotter](#fotter)
+- [Bugs](#bugs)
+  - [Fixed Bugs](#fixed-bugs)
+  - [Unfixed bugs:](#unfixed-bugs)
+
+
+
 ## User Story Testing
 
 ### EPIC |Profile
@@ -40,8 +71,10 @@
 *As a user, I want the ability to log out of my account to ensure the security of my personal information and prevent unauthorized access.*
 
 ![loginstatus](assets/readme/features/login_status.png)
+![logoutstatus](assets/readme/features/logout_confirmation.png)
 
  - At the top right corner there is a link to log out for the logged in user.
+ - When the user logs out, a success logout message appears on the homepage so that the user can see their status.
 
 ![homepage](assets/readme/features/home_page.png)
 
@@ -61,7 +94,7 @@
 *As a user, I want to be able to view a list of completed chores that are marked with the name of the person who completed them. This helps me track the progress and accountability of each individual.*
 
 ![todolistpage](assets/readme/features/todolist_page.png)
-![todolistpage](assets/readme/features/modal_completed_by.png)
+![modal](assets/readme/features/modal_completed_by.png)
 
  - At the far right next to each unfinished task there is a completed button. When the user clicks on it, a modal appears where the user can enter the name of the person who performed the task.
  - The user can see who did what as the completed tasks are grouped by the names of those who completed them.
@@ -69,9 +102,9 @@
 *As a user, I want the ability to view and edit the details of a chore, such as its title, description or how completed task. This allows me to make necessary changes or updates to the tasks as needed.*
 
 ![todolistpage](assets/readme/features/todolist_page.png)
-![todolistpage](assets/readme/features/view_page.png)
-![todolistpage](assets/readme/features/edit_page.png)
-![todolistpage](assets/readme/features/edit_prompt.png)
+![viewpage](assets/readme/features/view_page.png)
+![editpage](assets/readme/features/edit_page.png)
+![editprompt](assets/readme/features/edit_prompt.png)
 
  - The user has the opportunity to view and update both completed and unfinished tasks.
  - In order for the user to avoid unnecessary careless errors, a prompt message appears when the user clicks on update.
@@ -79,16 +112,16 @@
 *As a user, I want to be able to delete unwanted or completed chores from the list. This helps me keep the chore list organized and remove any unnecessary tasks.*
 
 ![todolistpage](assets/readme/features/todolist_page.png)
-![todolistpage](assets/readme/features/delete_page.png)
+![deletepage](assets/readme/features/delete_page.png)
 
  - The user has the option to delete completed and uncompleted tasks.
 
 *As an admin, I want to have ful CRUD functionality for the users.*
 
-![todolistpage](assets/readme/features/admin_home_page.png)
-![todolistpage](assets/readme/features/admin_view_update_page.png)
-![todolistpage](assets/readme/features/admin_view_update_delete_page.png)
-![todolistpage](assets/readme/features/admin_add_todo_page.png)
+![adminhomepage](assets/readme/features/admin_home_page.png)
+![adminviewpage](assets/readme/features/admin_view_update_page.png)
+![admincrud](assets/readme/features/admin_view_update_delete_page.png)
+![adminaddtodo](assets/readme/features/admin_add_todo_page.png)
 
  - Admins have full access to CRUD functionality for all users and all tasks.
 
@@ -129,7 +162,7 @@ No errors were found, but One undefined variable "$". it belongsnd  jQuery libra
 
 ### Python
 
-No errors were found, but One undefined variable "$". it belongsnd  jQuery library. [Jshint](https://jshint.com/) 
+No errors were found, but One undefined variable "$". it belongsnd  jQuery library. [CI Python Linter](https://pep8ci.herokuapp.com/)
 
 <details>
 
@@ -149,9 +182,6 @@ No errors were found, but One undefined variable "$". it belongsnd  jQuery libra
 ![Jshint](assets/readme/testing/TheKingOfChores_urls_py.png)
 </details>
 
-
-### Python
-All Python files were run through [Pep8](http://pep8online.com/) with no errors found. 
 
 ### Lighthouse
 
@@ -195,9 +225,9 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 |------------------------|------------|-----------------------------------------------------------------------------|-----------|
 | Header                 |            |                                                                             |           |
 | Site Name (logo)       | Click      | Redirect to home                                                            | Pass      |
-| register Link          | click      | Visible when the user is not logged in and redirect to the register page.   | Pass      |
+| Register Link          | click      | Visible when the user is not logged in and redirect to the register page.   | Pass      |
 | Log In Link            | Click      | Visible when the user is not logged in and redirect to the register page.   | Pass      |
-| Log out link           | click      | Visible when the user is logged in and redirect to the home page.           | Pass      |
+| Log Out Link           | Click      | Visible when the user is logged in and redirect to the home page. Success message| Pass |
 
 
 ### Register page 
@@ -328,5 +358,5 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 
 There are no known unfixed bugs. 
 
-
+[Back to Table of contents](#table-of-contents)
 

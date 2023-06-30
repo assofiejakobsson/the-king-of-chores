@@ -5,13 +5,47 @@ The live link can be found here - [The King Of Chores](https://the-king-of-chore
 
 ![responsive](assets/readme/images/responsive.png)
 
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [User Experience (UX)](#user-experience-ux)
+  - [User Stories](#user-stories)
+    - [EPIC | User Profile](#epic--user-profile)
+    - [EPIC | List of chores](#epic--list-of-chores)
+    - [EPIC | List of chores](#epic--list-of-chores-1)
+    - [EPIC | Game Functionality](#epic--game-functionality)
+  - [User Stories](#user-stories-1)
+    - [Colour Scheme](#colour-scheme)
+- [Wireframes](#wireframes)
+- [Agile Methodology](#agile-methodology)
+- [Data Model](#data-model)
+- [Testing](#testing)
+- [Security Features and Defensive Design](#security-features-and-defensive-design)
+  - [User Authentication](#user-authentication)
+  - [Database Security](#database-security)
+- [Features](#features)
+  - [Header](#header)
+  - [Footer](#footer)
+  - [Home Page](#home-page)
+  - [Todo List page](#todo-list-page)
+  - [View page](#view-page)
+  - [Edit page](#edit-page)
+  - [Delete page](#delete-page)
+  - [Register page](#register-page)
+  - [Login page](#login-page)
+  - [Logout](#logout)
+- [Deploy the App to Heroku](#deploy-the-app-to-heroku)
+  - [Create a new external database:](#create-a-new-external-database)
+  - [Create the Heroku App:](#create-the-heroku-app)
+  - [Prepare the environment and settings.py file:](#prepare-the-environment-and-settingspy-file)
+  - [Create files / directories:](#create-files--directories)
+  - [Update Heroku Config Vars](#update-heroku-config-vars)
+  - [Deploy](#deploy)
+- [Forking this repository](#forking-this-repository)
+- [Cloning this repository](#cloning-this-repository)
+- [Languages](#languages)
+- [Credits](#credits)
 
 
-
-
-
-
-<!-- <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small> -->
 ## User Experience (UX)
 
 A visitor to The King Of Chores. Is most likely a small group of people such as a family. 
@@ -60,6 +94,7 @@ The colour scheme of the site is mainly linear-gradient. The rest is bg-dark and
 
 The colors are designed with ease of use in mind. 
 
+## Wireframes
 
 <details>
 
@@ -127,18 +162,28 @@ Testing and results can be found [here](/TESTING.md)
 ## Security Features and Defensive Design
 
 ### User Authentication
+- The CustomUserCreationForm class extends UserCreationForm and customizes the form's behavior.
+ It adds validation for password length, checks for password match, and restricts the username to alphanumeric characters.
 
- - The UserCreationForm form to create a new user based on the submitted data. If the form is valid, a new user is created, and they are logged in using the login function. This I use in the register view.
+ - The CustomAuthenticationForm class extends AuthenticationForm and sets the required attribute for the username and password fields to True.
 
-  - The AuthenticationForm form to authenticate the user based on their submitted credentials. If the form is valid, the user is logged in using the login function. This I use in the user_login view.
+ - The register view handles user registration. It uses the CustomUserCreationForm to process the registration form. If the form is valid, a new user is created, logged in, and redirected to the home page.
 
- - The @login_required decorator is used to restrict access to certain views. It ensures that only authenticated users can access those views. If an unauthenticated user tries to access a view decorated with @login_required, they will be redirected to the login page.
+ - The user_login view handles user login. It uses the CustomAuthenticationForm to authenticate the user.
+ If the form is valid, the user is logged in and redirected to the to-do list page. If the form is invalid, an error message is displayed.
 
-  - The CSRF tokens and middleware are built in django mechanisms. This are to handle CSRF protection and mitigate the risks associated with CSRF attacks.
+ - The user_logout view logs out the user using the logout function and redirects them to the home page.
+ It also displays a success message using the messages framework.
 
-  - The form classes (UserCreationForm, AuthenticationForm, and TodoForm) are for form validation. Django's form validation ensures that user input is validated and secure.
+ - The @login_required decorator is used for the most of the views to ensure that only authenticated users can access it.
+ If an unauthenticated user tries to access the view, they will be redirected to the login page.
 
-  - The 'get_object_or_404' function are for handle object retrieval from the database. This function retrieves an object but raises a 404 HTTP response if the object is not found. This helps avoid exposing sensitive information or potential security vulnerabilities.
+ - The form classes (UserCreationForm, AuthenticationForm, and TodoForm) are for form validation. Django's form validation ensures that user input is validated and secure.
+
+ - The CSRF tokens and middleware are built in django mechanisms. This are to handle CSRF protection and mitigate the risks associated with CSRF attacks.
+
+ - The 'get_object_or_404' function are for handle object retrieval from the database. This function retrieves an object but raises a 404 HTTP response if the object is not found.
+  This helps avoid exposing sensitive information or potential security vulnerabilities.
 
 ### Database Security
 
@@ -176,7 +221,7 @@ Testing and results can be found [here](/TESTING.md)
 
 ### Home Page
 
-![header](assets/readme/features/home_page.png)
+![home page](assets/readme/features/home_page.png)
 
  - The home page is simply designed with a brief description of the app. 
  And it also appears that you need an account to be able to use the app.
@@ -186,8 +231,8 @@ Testing and results can be found [here](/TESTING.md)
 
 ### Todo List page
 
-![header](assets/readme/features/todolist_page.png)
-![header](assets/readme/features/modal.png)
+![todolist page](assets/readme/features/todolist_page.png)
+![modal](assets/readme/features/modal.png)
 
 
   - The Todo List page has a simple and user-friendly design.
@@ -206,7 +251,7 @@ Testing and results can be found [here](/TESTING.md)
 
 ### View page
 
-![header](assets/readme/features/view_page.png)
+![view page](assets/readme/features/view_page.png)
 
 - First comes a title "Task Title". Which makes it easier for the user to understand where and what it is about.
 - After the title. Will the title of the task the user chose to look more closely at and a possible description,
@@ -216,7 +261,7 @@ Testing and results can be found [here](/TESTING.md)
 
 ### Edit page
 
-![header](assets/readme/features/edit_page.png)
+![edit page](assets/readme/features/edit_page.png)
 
 - There are two pages for editing, one is for uncompleted tasks. And the other is for the completed tasks but they work and look the same. I never managed to fix the code so I only need one of them, but I will fix that later.
 - First comes a title "Update Task". Which makes it easier for the user to understand where and what it is about. 
@@ -226,7 +271,7 @@ Testing and results can be found [here](/TESTING.md)
 
 ### Delete page
 
-![header](assets/readme/features/delete_page.png)
+![delete page](assets/readme/features/delete_page.png)
 
 - There are two pages for delete, one is for uncompleted tasks. And the other is for the completed tasks but they work and look the same. I never managed to fix the code so I only need one of them, but I will fix that later.
 - First comes a title "Delete Task". Which makes it easier for the user to understand where and what it is about. 
@@ -236,62 +281,126 @@ Testing and results can be found [here](/TESTING.md)
 
 ### Register page
 
-![header](assets/readme/features/register_page.png)
+![register page](assets/readme/features/register_page.png)
+![register page](assets/readme/features/register_page_error_message.png)
 
 - First comes a title "Register". Which makes it easier for the user to understand where and what it is about. 
 - After that comes a form with input field for username, password, input field and cofirm password.
-- After that comes a "Register" button. And if the user has filled in everything correctly, and clicks on it, the user will be taken to the website as a logged in user.
+- Below the username and password input fields are the requirements for the username and password. This helps the user form an approved username and password.
+- If the user writes something that does not meet the requirements, an error message appears about what went wrong. This helps the user understand what is wrong so the user can correct it.
+- A Register button can be found under the form. And if the user has filled in everything correctly, and clicks on it, the user will be taken to the website as a logged in user.
 - At the bottom it says "Already have an account?" and a link "Login" that takes the user to the login page.
 
 ### Login page
 
-![header](assets/readme/features/login_page.png)
+![login page](assets/readme/features/login_page.png)
+![login page](assets/readme/features/login_page_error_message.png)
 
 - First comes a title "Login". Which makes it easier for the user to understand where and what it is about. 
 - After that comes a form with input field for username and password.
 - After that comes a "Login" button. And if the user has filled in everything correctly, and clicks on it, the user will be taken to the website as a logged in user.
+- And if the user enters the wrong username or password, an error message appears. This helps the user understand what is wrong.
 - At the bottom it says "Don't have an account?" and a link "Register" that takes the user to the Register page.
 
+### Logout
+
+![logout](assets/readme/features/header_loggedin.png)
+![logout](assets/readme/features/logout_confirmation.png)
+
+- When the user is logged in, there is always a logou link at the top right.
+- When the user presses the logout link, the user comes to the website with a confirmation message that the user is logged out.
+
+## Deploy the App to Heroku
+
+To deploy your app to Heroku, follow these steps:
+
+### Create a new external database:
+- Log in to your ElephantSQL account.
+- Copy the DATABASE_URL located in Config Vars in the Settings Tab.
+- Click "Create New Instance" and follow the steps outlined in the instructions.
+- Copy the ElephantSQL database URL 
+
+### Create the Heroku App:
+- Log in to Heroku or create a new account if you don't have one.
+- On the main page, click the "New" button in the top right corner and
+ select "Create New App" from the drop-down menu.
+- Choose a unique and meaningful app name.
+- Select the region that is closest to your target audience.
+- Click on the "Create App" button.
+- Open the settings tab and click "Reveal Config Vars".
+- Add a config var called DATABASE_URL and paste the ElephantSQL database URL as the value.
 
 
+### Prepare the environment and settings.py file:
+- In your local development environment, create an env.py file in the main directory of your project.
+- Add the DATABASE_URL value and your chosen SECRET_KEY value to the env.py file. 
+- Update the settings.py file to import the env.py file and configure the SECRET_KEY and DATABASE_URL.
+- Comment out the default database configuration in the settings.py file.
+- Save the files and run the necessary migrations.
+- If using Cloudinary, add the Cloudinary URL to the env.py file.
+- Include the Cloudinary libraries in the list of installed apps.
+- Configure the STATIC files settings, including the URL, storage path, directory path, root path, media URL, and default file storage path.
+- Link the file to the templates directory in Heroku.
+- Change the templates directory variable to TEMPLATES_DIR.
+- Add the Heroku app URL to the ALLOWED_HOSTS list, using the format ['app_name.heroku.com', 'localhost'].
+
+### Create files / directories:
+- Create requirements.txt file
+- Create three directories in the main directory; assets, static and templates. 
+- Create a file named "Procfile" in the main directory and add the following: web: gunicorn TheKingOfChores.wsgi
+
+### Update Heroku Config Vars
+Add the following Config Vars in Heroku:
+- SECRET_KEY value 
+- CLOUDINARY_URL
+- PORT = 8000
 
 
+### Deploy
+- Make sure that the DEBUG setting in your Django settings is set to False.
+- In the Heroku Dashboard, go to the "Deploy" tab of your app.
+- Connect your app to your GitHub repository by selecting the repository and branch.
+- Scroll down to the deployment options and choose whether to enable automatic deploys or deploy manually by clicking the "Deploy Branch" button.
+- Wait for the deployment process to complete.
+- Click View to view the deployed site.
+
+The site is now live. 
 
 
-.wrapper. https://css-tricks.com/best-way-implement-wrapper-css/
+## Forking this repository
+- Locate the repository at this link [The King Of Chores](https://github.com/assofiejakobsson/the-king-of-chores).
+- At the top of the repository, on the right side of the page, select "Fork" from the buttons available. 
+- A copy of the repository is now created.
 
-https://mycolor.space/gradient?ori=to+bottom&hex=%23053337&hex2=%23A8EB12&sub=1
+## Cloning this repository
+To clone this repository follow the below steps: 
 
-Welcome,
+- Go to the repository at this link [The King Of Chores](https://github.com/assofiejakobsson/the-king-of-chores). 
+- Under the "Code" button, select your preferred cloning option (HTTPS, SSH, or GitHub CLI) and copy the provided URL. 
+- Open your Terminal or command-line interface.
+- Navigate to the directory where you want to clone the repository.
+- Type git clone and then paste the URL you copied from GitHub. 
+- Press "Enter" to create the local clone of the repository.
 
-This is the Code Institute student template for Codeanywhere. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Languages
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **March 3rd, 2023**
+- Python
+- HTML
+- CSS
+- Javascript
 
-## Codeanywhere Reminders
+## Credits
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+- This repository was created using the template provided by Code Institute. [Code Institute Template](https://github.com/Code-Institute-Org/ci-full-template)
+- To get the Django framework installed and set up I followed the Code institutes [Django Blog cheatsheet](https://codeinstitute.s3.amazonaws.com/fst/Django%20Blog%20Cheat%20Sheet%20v1.pdf)
+- Fore the README.md and TESTING.md I have followed the README.md in these repositories. [README.md](https://github.com/AliOKeeffe/PP4_My_Meal_Planner/blob/main/README.md)
+- My starting code I get from [Hello Django](https://learn.codeinstitute.net/ci_program/diplomainsoftwaredevelopmentecomm)from Code Institut [Youtube](https://www.youtube.com/watch?v%253DllbtoQTt4qw).
+- I have received a lot of help from tutors at Code Institute, but above all with marking tasks with names.
+- I have had a lot of help from this page when trying to understand what to do and why.[w3schools](https://www.w3schools.com/django/django_templates.php)
+- I have used this to create my favicon.[favicon](https://favicon.io/favicon-generator/)
+- I have used this to understand how to implement wrapper in the html and css.[wrapper](https://css-tricks.com/best-way-implement-wrapper-css/)
+- For my background i have used a gardient and I created that here. [gardient](https://mycolor.space/gradient?ori%253Dto%252Bbottom%2526hex%253D%2523053337%2526hex2%253D%2523A8EB12%2526sub%253D1)
 
-`python3 -m http.server`
+[Back to Table of contents](#table-of-contents)
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A button should appear to click: _Open Preview_ or _Open Browser_.
-
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
----
-
-Happy coding!
