@@ -356,7 +356,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
   ### Unfixed bugs:
 
 
-There are no known unfixed bugs. 
+There are no known unfixed bug. 
 
 [Back to Table of contents](#table-of-contents)
 

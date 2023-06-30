@@ -232,7 +232,7 @@ Testing and results can be found [here](/TESTING.md)
 ### Todo List page
 
 ![todolist page](assets/readme/features/todolist_page.png)
-![modal](assets/readme/features/modal.png)
+![modal](assets/readme/features/modal_completed_by.png)
 
 
   - The Todo List page has a simple and user-friendly design.
@@ -394,9 +394,9 @@ To clone this repository follow the below steps:
 - This repository was created using the template provided by Code Institute. [Code Institute Template](https://github.com/Code-Institute-Org/ci-full-template)
 - To get the Django framework installed and set up I followed the Code institutes [Django Blog cheatsheet](https://codeinstitute.s3.amazonaws.com/fst/Django%20Blog%20Cheat%20Sheet%20v1.pdf)
 - Fore the README.md and TESTING.md I have followed the README.md in these repositories. [README.md](https://github.com/AliOKeeffe/PP4_My_Meal_Planner/blob/main/README.md)
-- My starting code I get from [Hello Django](https://learn.codeinstitute.net/ci_program/diplomainsoftwaredevelopmentecomm)from Code Institut [Youtube](https://www.youtube.com/watch?v%253DllbtoQTt4qw).
+- My starting code I get from [Hello Django](https://learn.codeinstitute.net/ci_program/diplomainsoftwaredevelopmentecomm)from Code Institut. And [Youtube](https://www.youtube.com/watch?v%253DllbtoQTt4qw).
 - I have received a lot of help from tutors at Code Institute, but above all with marking tasks with names.
-- I have had a lot of help from this page when trying to understand what to do and why.[w3schools](https://www.w3schools.com/django/django_templates.php)
+- I have had a lot of help from this page when trying to understand what to do and why.[w3schools](https://www.w3schools.com/django/index.php)
 - I have used this to create my favicon.[favicon](https://favicon.io/favicon-generator/)
 - I have used this to understand how to implement wrapper in the html and css.[wrapper](https://css-tricks.com/best-way-implement-wrapper-css/)
 - For my background i have used a gardient and I created that here. [gardient](https://mycolor.space/gradient?ori%253Dto%252Bbottom%2526hex%253D%2523053337%2526hex2%253D%2523A8EB12%2526sub%253D1)

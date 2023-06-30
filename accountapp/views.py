@@ -4,12 +4,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
 from .forms import RegistrationForm, CustomAuthenticationForm, CustomUserCreationForm
 from django.contrib import messages
 from todo.models import Todo
 
 
 # View for user registration
+@csrf_protect
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -28,6 +30,7 @@ def register(request):
 
 
 # View for user login
+@csrf_protect
 def user_login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)
