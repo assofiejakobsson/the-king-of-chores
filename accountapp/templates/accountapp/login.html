@@ -1,7 +1,6 @@
-{% extends 'base.html' %} <!-- Extend the 'base.html' template -->
+{% extends 'base.html' %}
 
-{% block content %} <!-- Start the content section fore the login page -->
-
+{% block content %}
 <div class="container bg-dark text-light py-4">
   <div class="container">
     <div class="row justify-content-center">
@@ -19,6 +18,15 @@
             <label for="id_password">Password:</label>
             {{ form.password }}
           </div>
+          <!-- Display error messages -->
+          {% if messages %}
+            <div class="errorlist">
+              {% for message in messages %}
+                {{ message }}
+              {% endfor %}
+            </div>
+          {% endif %}
+          <br>
           <!-- Submit button -->
           <button type="submit" class="btn btn-primary">Login</button>
         </form>
@@ -28,6 +36,4 @@
     </div>
   </div>
 </div>
-{% endblock %} <!-- End of the content section -->
-
-
+{% endblock %}

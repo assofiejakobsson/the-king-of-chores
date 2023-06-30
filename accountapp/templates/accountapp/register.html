@@ -1,7 +1,6 @@
-{% extends 'base.html' %} <!-- Extend the 'base.html' template -->
+{% extends 'base.html' %}
 
-{% block content %} <!-- Start the content section fore the register page -->
-
+{% block content %}
 <div class="container bg-dark text-light py-4">
   <div class="container">
     <div class="row justify-content-center">
@@ -13,11 +12,31 @@
           <div class="form-group">
             <label for="id_username">Username:</label>
             {{ form.username }}
+            <small class="form-text text-muted">
+              {{ form.username.help_text }}
+            </small>
+            {% if form.username.errors %}
+              <ul class="errorlist">
+                {% for error in form.username.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </div>
           <!-- Render the password field -->
           <div class="form-group">
             <label for="id_password1">Password:</label>
             {{ form.password1 }}
+            <small class="form-text text-muted">
+              {{ form.password1.help_text }}
+            </small>
+            {% if form.password1.errors %}
+              <ul class="errorlist">
+                {% for error in form.password1.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </div>
           <!-- Render the password confirmation field -->
           <div class="form-group">
@@ -33,5 +52,4 @@
     </div>
   </div>
 </div>
-
-{% endblock %} <!-- End of the content section -->
+{% endblock %}

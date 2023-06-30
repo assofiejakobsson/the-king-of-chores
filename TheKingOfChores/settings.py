@@ -16,6 +16,7 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -33,8 +34,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+
 ALLOWED_HOSTS = [
     'the-king-of-chores.herokuapp.com',
+    '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu101.gitpod.io',
     '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu99.gitpod.io',
     '8000-assofiejako-thekingofch-gc72b8eqawa.ws-eu100.gitpod.io',
     'localhost',
@@ -58,6 +61,7 @@ INSTALLED_APPS = [
     'accountapp',
     'todo',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,6 +126,17 @@ AUTH_PASSWORD_VALIDATORS = [
                  'NumericPasswordValidator'),
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = 'todo:home'
+LOGOUT_REDIRECT_URL = 'todo:home'
 
 
 # Internationalization

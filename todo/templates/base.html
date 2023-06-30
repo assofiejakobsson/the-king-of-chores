@@ -1,4 +1,4 @@
-{% load static %}  <!-- Load the static template tag to use static files -->
+{% load static %} <!-- Load the static template tag to use static files -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +76,16 @@
       </div>
     </div>
   </nav>
+
+  {% if messages %}
+    <div class="container mt-4">
+      <div class="messages container bg-dark text-light py-4">
+        {% for message in messages %}
+          {% if message.tags %} {{ message.tags }}{% endif %} {{ message }}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
 
   <div class="wrapper">
     <div class="container mt-4">
